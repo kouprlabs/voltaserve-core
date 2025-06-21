@@ -12,7 +12,7 @@ import SwiftUI
 
 #if os(iOS)
     extension UIImage {
-        func resized(toMaxDimension maxDim: CGFloat) -> UIImage {
+        public func resized(toMaxDimension maxDim: CGFloat) -> UIImage {
             let maxSide = max(size.width, size.height)
             guard maxSide > maxDim else { return self }
 
