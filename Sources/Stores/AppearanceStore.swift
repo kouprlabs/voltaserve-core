@@ -11,7 +11,7 @@
 import SwiftUI
 
 public class AppearanceStore: ObservableObject {
-    @Published var accentColor: Color {
+    @Published public var accentColor: Color {
         didSet {
             saveAccentColor()
         }

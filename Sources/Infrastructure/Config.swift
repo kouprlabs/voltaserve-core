@@ -44,11 +44,11 @@ public struct Config {
         )
     }
 
-    func isLocalSignIn() -> Bool {
+    public func isLocalSignIn() -> Bool {
         signInStrategy == .local
     }
 
-    func isAppleSignIn() -> Bool {
+    public func isAppleSignIn() -> Bool {
         signInStrategy == .apple
     }
 }
