@@ -36,6 +36,8 @@ public class SharingStore: ObservableObject {
         }
     }
 
+    public init() {}
+
     // MARK: - Fetch
 
     public func fetchUserPermissions() {

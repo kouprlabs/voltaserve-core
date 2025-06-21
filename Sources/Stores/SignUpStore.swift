@@ -19,6 +19,8 @@ public class SignUpStore: ObservableObject {
     private var timer: Timer?
     private var accountClient: VOAccount = .init(baseURL: Config.shared.idpURL)
 
+    public init() {}
+
     // MARK: - Fetch
 
     public func fetchPasswordRequirements() {

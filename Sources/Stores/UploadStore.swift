@@ -13,6 +13,8 @@ import Foundation
 public class UploadStore: ObservableObject {
     @Published public var entities: [Entity] = []
 
+    public init() {}
+
     public struct Entity {
         let url: URL
         var progress: Double

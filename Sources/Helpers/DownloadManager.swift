@@ -10,13 +10,13 @@
 
 import Foundation
 
-class DownloadManager: NSObject, ObservableObject, URLSessionDownloadDelegate {
+public class DownloadManager: NSObject, ObservableObject, URLSessionDownloadDelegate {
     @Published var progress: Double = 0.0
     @Published var downloadedData: Data?
 
     private var session: URLSession!
 
-    override init() {
+    public override init() {
         super.init()
         let config = URLSessionConfiguration.default
         session = URLSession(configuration: config, delegate: self, delegateQueue: nil)
@@ -27,7 +27,7 @@ class DownloadManager: NSObject, ObservableObject, URLSessionDownloadDelegate {
         task.resume()
     }
 
-    func urlSession(
+    public func urlSession(
         _ session: URLSession, downloadTask: URLSessionDownloadTask,
         didWriteData bytesWritten: Int64,
         totalBytesWritten: Int64,
@@ -38,7 +38,7 @@ class DownloadManager: NSObject, ObservableObject, URLSessionDownloadDelegate {
         }
     }
 
-    func urlSession(
+    public func urlSession(
         _ session: URLSession, downloadTask: URLSessionDownloadTask,
         didFinishDownloadingTo location: URL
     ) {
