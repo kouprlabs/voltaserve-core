@@ -314,7 +314,7 @@ public struct VOOrganization {
         public let createTime: String
         public let updateTime: String?
 
-        var displayID: String {
+        public var displayID: String {
             "\(id)-\(self.objectCode)"
         }
 

@@ -16,16 +16,16 @@ public class UploadStore: ObservableObject {
     public init() {}
 
     public struct Entity {
-        let url: URL
-        var progress: Double
-        var status: Status
-        var message: String
+        public let url: URL
+        public var progress: Double
+        public var status: Status
+        public var message: String
 
-        var id: String {
+        public var id: String {
             url.absoluteString
         }
 
-        var displayID: String {
+        public var displayID: String {
             "\(id)-\(self.objectCode)"
         }
 
