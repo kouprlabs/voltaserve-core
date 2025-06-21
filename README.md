@@ -1,5 +1,7 @@
 # Voltaserve Core
 
+This is a Swift package that consists of the core building blocks for the iOS, iPadOS and macOS apps, it contains client to invoke Voltaserve REST APIs, and other reusable views and extensions.
+
 ## Getting Started
 
 Prerequisites:
