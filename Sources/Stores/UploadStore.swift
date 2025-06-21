@@ -35,7 +35,7 @@ public class UploadStore: ObservableObject {
             return builder.finalize()
         }
 
-        init(_ url: URL, progress: Double = 0, status: Status = .waiting, message: String = "") {
+        public init(_ url: URL, progress: Double = 0, status: Status = .waiting, message: String = "") {
             self.url = url
             self.progress = progress
             self.status = status

@@ -31,6 +31,8 @@ public class MosaicStore: ObservableObject {
         }
     }
 
+    public init() {}
+
     // MARK: - Fetch
 
     public func fetchMetadata() {

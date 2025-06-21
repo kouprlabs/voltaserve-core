@@ -14,6 +14,8 @@ import Foundation
 public class ForgotPasswordStore: ObservableObject {
     private var accountClient: VOAccount = .init(baseURL: Config.shared.idpURL)
 
+    public init() {}
+
     // MARK: - Update
 
     public func sendResetPasswordEmail(_ options: VOAccount.SendResetPasswordEmailOptions) async throws {
