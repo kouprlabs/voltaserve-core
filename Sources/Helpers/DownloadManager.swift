@@ -11,8 +11,8 @@
 import Foundation
 
 public class DownloadManager: NSObject, ObservableObject, URLSessionDownloadDelegate {
-    @Published var progress: Double = 0.0
-    @Published var downloadedData: Data?
+    @Published public var progress: Double = 0.0
+    @Published public var downloadedData: Data?
 
     private var session: URLSession!
 
