@@ -34,7 +34,7 @@ public class WorkspaceStore: ObservableObject {
     private var workspaceClient: VOWorkspace?
     private var fileClient: VOFile?
     private var storageClient: VOStorage?
-    let searchPublisher = PassthroughSubject<String, Never>()
+    public let searchPublisher = PassthroughSubject<String, Never>()
 
     public var session: VOSession.Value? {
         didSet {
