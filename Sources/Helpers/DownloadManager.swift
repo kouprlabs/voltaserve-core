@@ -22,7 +22,7 @@ public class DownloadManager: NSObject, ObservableObject, URLSessionDownloadDele
         session = URLSession(configuration: config, delegate: self, delegateQueue: nil)
     }
 
-    func startDownload(from url: URL) {
+    public func startDownload(from url: URL) {
         let task = session.downloadTask(with: url)
         task.resume()
     }
