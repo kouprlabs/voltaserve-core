@@ -75,11 +75,11 @@ public class Server: Codable {
         case isActive
     }
 
-    func isLocalSignIn() -> Bool {
+    public func isLocalSignIn() -> Bool {
         signInStrategy == SignInStrategy.local.rawValue
     }
 
-    func isAppleSignIn() -> Bool {
+    public func isAppleSignIn() -> Bool {
         signInStrategy == SignInStrategy.apple.rawValue
     }
 }
