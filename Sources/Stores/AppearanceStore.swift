@@ -19,7 +19,7 @@ public class AppearanceStore: ObservableObject {
 
     private static let colorKey = "com.voltaserve.accentColor"
 
-    init() {
+    public init() {
         accentColor = Self.loadAccentColor() ?? .blue
     }
 
