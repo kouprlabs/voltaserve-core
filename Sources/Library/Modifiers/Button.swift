@@ -66,7 +66,7 @@ public struct VOButtonCommons: ViewModifier {
 }
 
 public enum VOButtonMetrics {
-    static let height: CGFloat = 40
+    public static let height: CGFloat = 40
 }
 
 extension View {
