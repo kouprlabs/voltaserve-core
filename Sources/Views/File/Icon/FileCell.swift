@@ -55,7 +55,7 @@ public struct FileCell: View {
     }
 
     private var fileIcon: some View {
-        Image(file.iconForFile(colorScheme: colorScheme))
+        Image(file.iconForFile(colorScheme: colorScheme), bundle: .module)
             .resizable()
             .aspectRatio(contentMode: .fit)
             .frame(width: FileCellMetrics.iconSize.width, height: FileCellMetrics.iconSize.height)
