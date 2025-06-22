@@ -71,7 +71,9 @@ public struct FileCell: View {
                 width: FileCellMetrics.iconSize.width + VOMetrics.spacingLg,
                 height: FileCellMetrics.iconSize.height + VOMetrics.spacing2Xl
             )
-            .background(colorScheme == .light ? .white : .clear)
+            #if os(iOS)
+                .background(colorScheme == .light ? .white : .clear)
+            #endif
             .modifierIf(modifier != nil) {
                 modifier!(AnyView($0))
             }
@@ -96,11 +98,104 @@ public struct FileCell: View {
                 width: FileCellMetrics.iconSize.width + VOMetrics.spacing2Xl,
                 height: FileCellMetrics.iconSize.height + VOMetrics.spacingLg
             )
-            .background(colorScheme == .light ? .white : .clear)
+            #if os(iOS)
+                .background(colorScheme == .light ? .white : .clear)
+            #endif
             .modifierIf(modifier != nil) {
                 modifier!(AnyView($0))
             }
         }
         .frame(maxWidth: FileCellMetrics.frameSize.width, maxHeight: FileCellMetrics.frameSize.height)
     }
+}
+
+private struct PreviewContent: View {
+    @Environment(\.colorScheme) var colorScheme
+
+    var body: some View {
+        LazyVGrid(
+            columns: Array(
+                repeating: GridItem(
+                    .fixed(FileCellMetrics.cellSize.width),
+                    spacing: VOMetrics.spacing
+                ),
+                count: 3
+            )
+        ) {
+            FileCell(
+                .init(
+                    id: UUID().uuidString,
+                    name: "Voltaserve.pdf",
+                    type: .file,
+                    parentID: nil,
+                    permission: .owner,
+                    isShared: true,
+                    snapshot: .init(
+                        id: UUID().uuidString,
+                        version: 1,
+                        original: .init(fileExtension: ".pdf", size: 10000),
+                        capabilities: .init(
+                            original: true,
+                            preview: true,
+                            ocr: false,
+                            text: true,
+                            summary: true,
+                            entities: false,
+                            mosaic: false,
+                            thumbnail: false
+                        ),
+                        isActive: true,
+                        createTime: Date().iso8601
+                    ),
+                    workspace: VOWorkspace.Entity(
+                        id: UUID().uuidString,
+                        name: "Romanoff's Workspace",
+                        permission: .owner,
+                        storageCapacity: 100_000_000,
+                        rootID: UUID().uuidString,
+                        organization: VOOrganization.Entity(
+                            id: UUID().uuidString,
+                            name: "Romanoff's Organization",
+                            permission: .owner,
+                            createTime: Date().iso8601
+                        ),
+                        createTime: Date().iso8601
+                    ),
+                    createTime: Date().iso8601
+                ),
+                fileStore: FileStore()
+            )
+            FileCell(
+                .init(
+                    id: UUID().uuidString,
+                    name: "Murph",
+                    type: .folder,
+                    parentID: nil,
+                    permission: .owner,
+                    isShared: true,
+                    workspace: VOWorkspace.Entity(
+                        id: UUID().uuidString,
+                        name: "Romanoff's Workspace",
+                        permission: .owner,
+                        storageCapacity: 100_000_000,
+                        rootID: UUID().uuidString,
+                        organization: VOOrganization.Entity(
+                            id: UUID().uuidString,
+                            name: "Romanoff's Organization",
+                            permission: .owner,
+                            createTime: Date().iso8601
+                        ),
+                        createTime: Date().iso8601
+                    ),
+                    createTime: Date().iso8601
+                ),
+                fileStore: FileStore(),
+            )
+        }
+        .background(colorScheme == .light ? .white : .clear)
+    }
+}
+
+#Preview {
+    PreviewContent()
 }
