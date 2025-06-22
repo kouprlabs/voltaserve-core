@@ -20,7 +20,7 @@ struct FontSizeFromTextStyleModifier: ViewModifier {
             let size = NSFont.preferredFont(forTextStyle: nsTextStyle(from: style)).pointSize
         #endif
 
-        return content.font(.system(size: size))
+        return content.font(.custom(VOMetrics.bodyFontFamily, size: size))
     }
 
     // iOS text style mapping
