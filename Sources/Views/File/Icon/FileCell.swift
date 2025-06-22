@@ -80,7 +80,7 @@ public struct FileCell: View {
     }
 
     private var folderIcon: some View {
-        Image("icon-folder")
+        Image("icon-folder", bundle: .module)
             .resizable()
             .aspectRatio(contentMode: .fit)
             .frame(width: FileCellMetrics.iconSize.width, height: FileCellMetrics.iconSize.height)

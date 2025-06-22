@@ -23,24 +23,24 @@ public struct VOLogo: View {
     public var body: some View {
         if colorScheme == .dark {
             if isGlossy {
-                Image("logo-dark-glossy")
+                Image("logo-dark-glossy", bundle: .module)
                     .resizable()
                     .aspectRatio(contentMode: .fit)
                     .frame(width: size.width, height: size.height)
             } else {
-                Image("logo-dark")
+                Image("logo-dark", bundle: .module)
                     .resizable()
                     .aspectRatio(contentMode: .fit)
                     .frame(width: size.width, height: size.height)
             }
         } else {
             if isGlossy {
-                Image("logo-glossy")
+                Image("logo-glossy", bundle: .module)
                     .resizable()
                     .aspectRatio(contentMode: .fit)
                     .frame(width: size.width, height: size.height)
             } else {
-                Image("logo")
+                Image("logo", bundle: .module)
                     .resizable()
                     .aspectRatio(contentMode: .fit)
                     .frame(width: size.width, height: size.height)
@@ -54,4 +54,5 @@ public struct VOLogo: View {
         VOLogo(size: .init(width: 100, height: 100))
         VOLogo(isGlossy: true, size: .init(width: 100, height: 100))
     }
+    .padding()
 }

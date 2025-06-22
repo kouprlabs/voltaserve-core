@@ -21,7 +21,8 @@ let package = Package(
         .target(
             name: "VoltaserveCore",
             dependencies: ["Kingfisher"],
-            path: "Sources"
+            path: "Sources",
+            resources: [.process("Resources")]
         ),
         .testTarget(
             name: "VoltaserveTests",

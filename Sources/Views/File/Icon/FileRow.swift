@@ -21,12 +21,12 @@ public struct FileRow: View {
     public var body: some View {
         HStack(spacing: VOMetrics.spacing) {
             if file.type == .file {
-                Image(file.iconForFile(colorScheme: colorScheme))
+                Image(file.iconForFile(colorScheme: colorScheme), bundle: .module)
                     .resizable()
                     .aspectRatio(contentMode: .fit)
                     .frame(width: 40, height: 40)
             } else if file.type == .folder {
-                Image("icon-folder")
+                Image("icon-folder", bundle: .module)
                     .resizable()
                     .aspectRatio(contentMode: .fit)
                     .frame(width: 40, height: 40)
@@ -60,7 +60,7 @@ public struct FileRow: View {
                 snapshot: .init(
                     id: UUID().uuidString,
                     version: 1,
-                    original: .init(size: 10000),
+                    original: .init(fileExtension: ".pdf", size: 10000),
                     capabilities: .init(
                         original: true,
                         preview: true,
