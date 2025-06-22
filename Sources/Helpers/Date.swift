@@ -49,6 +49,10 @@ extension Date {
             timeStyle: .short
         )
     }
+
+    public var iso8601: String {
+        ISO8601DateFormatter().string(from: self)
+    }
 }
 
 public func timeAgo(from startDate: Date, to endDate: Date) -> String {

@@ -49,9 +49,9 @@ public struct WorkspaceRow: View {
                     id: UUID().uuidString,
                     name: "Wayne's Organization",
                     permission: .owner,
-                    createTime: Date().description
+                    createTime: Date().iso8601
                 ),
-                createTime: Date().description
+                createTime: Date().iso8601
             )
         )
         WorkspaceRow(
@@ -65,9 +65,9 @@ public struct WorkspaceRow: View {
                     id: UUID().uuidString,
                     name: "Stark's Organization",
                     permission: .owner,
-                    createTime: Date().description
+                    createTime: Date().iso8601
                 ),
-                createTime: Date().description
+                createTime: Date().iso8601
             )
         )
         WorkspaceRow(
@@ -81,9 +81,9 @@ public struct WorkspaceRow: View {
                     id: UUID().uuidString,
                     name: "Romanoff's Organization",
                     permission: .owner,
-                    createTime: Date().description
+                    createTime: Date().iso8601
                 ),
-                createTime: Date().description
+                createTime: Date().iso8601
             )
         )
     }
