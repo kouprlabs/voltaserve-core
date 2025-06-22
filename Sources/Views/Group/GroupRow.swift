@@ -49,5 +49,7 @@ public struct GroupRow: View {
             ),
             permission: .owner,
             createTime: Date().ISO8601Format()
-        ))
+        )
+    )
+    .padding()
 }

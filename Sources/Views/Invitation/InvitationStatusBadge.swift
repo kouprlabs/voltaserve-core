@@ -56,4 +56,5 @@ public struct InvitationStatusBadge: View {
         InvitationStatusBadge(.accepted)
         InvitationStatusBadge(.declined)
     }
+    .padding()
 }

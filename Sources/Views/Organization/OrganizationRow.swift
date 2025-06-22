@@ -36,5 +36,7 @@ public struct OrganizationRow: View {
             name: "My Organization",
             permission: .owner,
             createTime: Date().ISO8601Format()
-        ))
+        )
+    )
+    .padding()
 }
