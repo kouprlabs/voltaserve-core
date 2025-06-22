@@ -10,7 +10,7 @@
 
 import SwiftUI
 
-struct UploadRow: View {
+public struct UploadRow: View {
     @Environment(\.colorScheme) private var colorScheme
     let upload: UploadStore.Entity
 
@@ -18,7 +18,7 @@ struct UploadRow: View {
         self.upload = upload
     }
 
-    var body: some View {
+    public var body: some View {
         HStack(spacing: VOMetrics.spacingSm) {
             if upload.status == .running {
                 if #available(iOS 18.0, macOS 15.0, *) {
