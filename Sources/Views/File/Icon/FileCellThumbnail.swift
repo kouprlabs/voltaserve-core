@@ -64,7 +64,7 @@ public struct FileCellThumbnail<V: View>: View {
                 if let fileExtension = file.snapshot?.original.fileExtension, fileExtension.isVideo() {
                     Image(systemName: "play.fill")
                         .foregroundStyle(.white)
-                        .font(.largeTitle)
+                        .fontSize(.largeTitle)
                         .opacity(0.5)
                 }
             }

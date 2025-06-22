@@ -33,7 +33,7 @@ public struct SharingUserRow: View {
                     .lineLimit(1)
                     .truncationMode(.tail)
                 Text(userPermission.user.email)
-                    .font(.footnote)
+                    .fontSize(.footnote)
                     .foregroundStyle(Color.gray500)
                     .lineLimit(1)
                     .truncationMode(.middle)
@@ -45,18 +45,45 @@ public struct SharingUserRow: View {
 }
 
 #Preview {
-    SharingUserRow(
-        .init(
-            id: UUID().uuidString,
-            user: VOUser.Entity(
+    List {
+        SharingUserRow(
+            .init(
                 id: UUID().uuidString,
-                username: "brucelee@example.com",
-                email: "brucelee@example.com",
-                fullName: "Bruce Lee",
-                createTime: Date().ISO8601Format()
-            ),
-            permission: .editor
+                user: VOUser.Entity(
+                    id: UUID().uuidString,
+                    username: "bruce.wayne@voltaserve.com",
+                    email: "bruce.wayne@voltaserve.com",
+                    fullName: "Bruce Wayne",
+                    createTime: Date().ISO8601Format()
+                ),
+                permission: .viewer
+            )
         )
-    )
-    .padding()
+        SharingUserRow(
+            .init(
+                id: UUID().uuidString,
+                user: VOUser.Entity(
+                    id: UUID().uuidString,
+                    username: "tony.stark@voltaserve.com",
+                    email: "tony.stark@voltaserve.com",
+                    fullName: "Tony Stark",
+                    createTime: Date().ISO8601Format()
+                ),
+                permission: .editor
+            )
+        )
+        SharingUserRow(
+            .init(
+                id: UUID().uuidString,
+                user: VOUser.Entity(
+                    id: UUID().uuidString,
+                    username: "natasha.romanoff@voltaserve.com",
+                    email: "natasha.romanoff@voltaserve.com",
+                    fullName: "Natasha Romanoff",
+                    createTime: Date().ISO8601Format()
+                ),
+                permission: .owner
+            )
+        )
+    }
 }

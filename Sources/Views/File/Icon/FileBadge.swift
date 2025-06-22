@@ -35,14 +35,14 @@ public struct FileBadge: View {
                     Image(systemName: Icons.processing)
                         .symbolEffect(.rotate, options: .repeat(.continuous))
                         .symbolRenderingMode(.palette)
-                        .font(.title2)
+                        .fontSize(.title2)
                         .foregroundStyle(Color.gray400, colorScheme == .dark ? Color.gray700 : .white)
                         .frame(width: Constants.iconSize, height: Constants.iconSize)
                 }
             } else if icon == Icons.error {
                 Image(systemName: Icons.error)
                     .symbolRenderingMode(.palette)
-                    .font(.title2)
+                    .fontSize(.title2)
                     .foregroundStyle(Color.red500, colorScheme == .dark ? Color.gray700 : .white)
                     .frame(width: Constants.iconSize, height: Constants.iconSize)
             } else if icon == Icons.waiting {

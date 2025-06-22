@@ -27,7 +27,7 @@ public struct WorkspaceRow: View {
                     .truncationMode(.tail)
                     .foregroundStyle(colorScheme == .dark ? .white : .black)
                 Text(workspace.organization.name)
-                    .font(.footnote)
+                    .fontSize(.footnote)
                     .foregroundStyle(Color.gray500)
                     .lineLimit(1)
                     .truncationMode(.tail)
@@ -37,21 +37,54 @@ public struct WorkspaceRow: View {
 }
 
 #Preview {
-    WorkspaceRow(
-        .init(
-            id: UUID().uuidString,
-            name: "My Workspace",
-            permission: .owner,
-            storageCapacity: 100_000_000,
-            rootID: UUID().uuidString,
-            organization: .init(
+    List {
+        WorkspaceRow(
+            .init(
                 id: UUID().uuidString,
-                name: "My Organization",
+                name: "Wayne's Workspace",
                 permission: .owner,
+                storageCapacity: 100_000_000,
+                rootID: UUID().uuidString,
+                organization: .init(
+                    id: UUID().uuidString,
+                    name: "Wayne's Organization",
+                    permission: .owner,
+                    createTime: Date().description
+                ),
                 createTime: Date().description
-            ),
-            createTime: Date().description
+            )
         )
-    )
-    .padding()
+        WorkspaceRow(
+            .init(
+                id: UUID().uuidString,
+                name: "Starks's Workspace",
+                permission: .owner,
+                storageCapacity: 100_000_000,
+                rootID: UUID().uuidString,
+                organization: .init(
+                    id: UUID().uuidString,
+                    name: "Stark's Organization",
+                    permission: .owner,
+                    createTime: Date().description
+                ),
+                createTime: Date().description
+            )
+        )
+        WorkspaceRow(
+            .init(
+                id: UUID().uuidString,
+                name: "Romanoff's Workspace",
+                permission: .owner,
+                storageCapacity: 100_000_000,
+                rootID: UUID().uuidString,
+                organization: .init(
+                    id: UUID().uuidString,
+                    name: "Romanoff's Organization",
+                    permission: .owner,
+                    createTime: Date().description
+                ),
+                createTime: Date().description
+            )
+        )
+    }
 }

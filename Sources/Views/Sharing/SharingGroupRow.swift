@@ -27,7 +27,7 @@ public struct SharingGroupRow: View {
                     .truncationMode(.tail)
                     .foregroundStyle(colorScheme == .dark ? .white : .black)
                 Text(groupPermission.group.organization.name)
-                    .font(.footnote)
+                    .fontSize(.footnote)
                     .foregroundStyle(Color.gray500)
                     .lineLimit(1)
                     .truncationMode(.tail)
@@ -39,23 +39,60 @@ public struct SharingGroupRow: View {
 }
 
 #Preview {
-    SharingGroupRow(
-        .init(
-            id: UUID().uuidString,
-            group: .init(
+    List {
+        SharingGroupRow(
+            .init(
                 id: UUID().uuidString,
-                name: "My Group",
-                organization: .init(
+                group: .init(
                     id: UUID().uuidString,
-                    name: "My Organization",
+                    name: "Wayne's Group",
+                    organization: .init(
+                        id: UUID().uuidString,
+                        name: "Wayne's Organization",
+                        permission: .owner,
+                        createTime: Date().ISO8601Format()
+                    ),
                     permission: .owner,
                     createTime: Date().ISO8601Format()
                 ),
-                permission: .owner,
-                createTime: Date().ISO8601Format()
-            ),
-            permission: .owner
+                permission: .viewer
+            )
         )
-    )
-    .padding()
+        SharingGroupRow(
+            .init(
+                id: UUID().uuidString,
+                group: .init(
+                    id: UUID().uuidString,
+                    name: "Stark's Group",
+                    organization: .init(
+                        id: UUID().uuidString,
+                        name: "Stark's Organization",
+                        permission: .owner,
+                        createTime: Date().ISO8601Format()
+                    ),
+                    permission: .owner,
+                    createTime: Date().ISO8601Format()
+                ),
+                permission: .editor
+            )
+        )
+        SharingGroupRow(
+            .init(
+                id: UUID().uuidString,
+                group: .init(
+                    id: UUID().uuidString,
+                    name: "Romanoff's Group",
+                    organization: .init(
+                        id: UUID().uuidString,
+                        name: "Romanoff's Organization",
+                        permission: .owner,
+                        createTime: Date().ISO8601Format()
+                    ),
+                    permission: .owner,
+                    createTime: Date().ISO8601Format()
+                ),
+                permission: .owner
+            )
+        )
+    }
 }

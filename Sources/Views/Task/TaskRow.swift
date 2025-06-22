@@ -27,20 +27,20 @@ public struct TaskRow: View {
                     if #available(iOS 18.0, macOS 15.0, *) {
                         Image(systemName: "arrow.trianglehead.2.clockwise.rotate.90.circle")
                             .symbolEffect(.rotate, options: .repeat(.continuous))
-                            .font(.title2)
+                            .fontSize(.title2)
                             .foregroundStyle(Color.blue400)
                     }
                 } else if task.status == .waiting {
                     Image(systemName: "hourglass.circle")
-                        .font(.title2)
+                        .fontSize(.title2)
                         .foregroundStyle(Color.gray400)
                 } else if task.status == .success {
                     Image(systemName: "checkmark.circle")
-                        .font(.title2)
+                        .fontSize(.title2)
                         .foregroundStyle(Color.green400)
                 } else if task.status == .error {
                     Image(systemName: "exclamationmark.circle")
-                        .font(.title2)
+                        .fontSize(.title2)
                         .foregroundStyle(Color.red400)
                 }
                 if let object = task.payload?.object {
@@ -49,23 +49,23 @@ public struct TaskRow: View {
                             .lineLimit(1)
                             .truncationMode(.middle)
                         Text(task.name)
-                            .font(.footnote)
+                            .fontSize(.footnote)
                             .foregroundStyle(Color.gray500)
                             .lineLimit(3)
                             .truncationMode(.tail)
                         Text(task.createTime.relativeDate())
-                            .font(.footnote)
+                            .fontSize(.footnote)
                             .foregroundStyle(Color.gray500)
                     }
                 } else {
                     VStack(alignment: .leading) {
                         Text(task.name)
-                            .font(.footnote)
+                            .fontSize(.footnote)
                             .foregroundStyle(Color.gray500)
                             .lineLimit(3)
                             .truncationMode(.tail)
                         Text(task.createTime.relativeDate())
-                            .font(.footnote)
+                            .fontSize(.footnote)
                             .foregroundStyle(Color.gray500)
                     }
                 }
@@ -97,7 +97,8 @@ public struct TaskRow: View {
                             isDismissible: false,
                             payload: VOTask.Payload(object: "human-freedom-index-2022.pdf"),
                             createTime: ISO8601DateFormatter().string(from: Date().addingTimeInterval(-5 * 60))
-                        ))
+                        )
+                    )
                 }
                 NavigationLink(destination: Color.clear) {
                     TaskRow(
@@ -110,7 +111,8 @@ public struct TaskRow: View {
                             isDismissible: false,
                             payload: VOTask.Payload(object: "Kubernetes-Patterns-2nd-Edition.pdf"),
                             createTime: ISO8601DateFormatter().string(from: Date().addingTimeInterval(-60 * 60))
-                        ))
+                        )
+                    )
                 }
                 NavigationLink(destination: Color.clear) {
                     TaskRow(
@@ -124,7 +126,8 @@ public struct TaskRow: View {
                             payload: VOTask.Payload(object: "In_the_Conservatory.tiff"),
                             createTime: ISO8601DateFormatter().string(from: Date().addingTimeInterval(-2 * 60 * 60))
 
-                        ))
+                        )
+                    )
                 }
                 NavigationLink(destination: Color.clear) {
                     TaskRow(
@@ -138,7 +141,8 @@ public struct TaskRow: View {
                             isDismissible: true,
                             payload: VOTask.Payload(object: "Choose-an-automation-tool-ebook-Red-Hat-Developer.pdf"),
                             createTime: ISO8601DateFormatter().string(from: Date().addingTimeInterval(-3 * 60 * 60))
-                        ))
+                        )
+                    )
                 }
                 NavigationLink(destination: Color.clear) {
                     TaskRow(
@@ -152,7 +156,8 @@ public struct TaskRow: View {
                             isDismissible: false,
                             payload: VOTask.Payload(object: "Introducing the Arm architecture.pdf"),
                             createTime: ISO8601DateFormatter().string(from: Date().addingTimeInterval(-4 * 60 * 60))
-                        ))
+                        )
+                    )
                 }
             }
         }

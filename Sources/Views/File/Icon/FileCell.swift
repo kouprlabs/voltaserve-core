@@ -46,7 +46,7 @@ public struct FileCell: View {
                     .lineLimit(3)
                     .truncationMode(.middle)
                 Text(file.createTime.relativeDate())
-                    .font(.footnote)
+                    .fontSize(.footnote)
                     .foregroundStyle(Color.gray500)
                 Spacer()
             }
@@ -72,8 +72,9 @@ public struct FileCell: View {
                 height: FileCellMetrics.iconSize.height + VOMetrics.spacing2Xl
             )
             .background(colorScheme == .light ? .white : .clear)
-            //            .contentShape(.contextMenuPreview, RoundedRectangle(cornerRadius: VOMetrics.borderRadiusSm))
-            //            .fileActions(file, fileStore: fileStore)
+            .modifierIf(modifier != nil) {
+                modifier!(AnyView($0))
+            }
         }
         .frame(maxWidth: FileCellMetrics.frameSize.width, maxHeight: FileCellMetrics.frameSize.height)
     }
@@ -96,8 +97,9 @@ public struct FileCell: View {
                 height: FileCellMetrics.iconSize.height + VOMetrics.spacingLg
             )
             .background(colorScheme == .light ? .white : .clear)
-            //            .contentShape(.contextMenuPreview, RoundedRectangle(cornerRadius: VOMetrics.borderRadiusSm))
-            //            .fileActions(file, fileStore: fileStore)
+            .modifierIf(modifier != nil) {
+                modifier!(AnyView($0))
+            }
         }
         .frame(maxWidth: FileCellMetrics.frameSize.width, maxHeight: FileCellMetrics.frameSize.height)
     }

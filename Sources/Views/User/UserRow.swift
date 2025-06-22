@@ -34,7 +34,7 @@ public struct UserRow: View {
                     .truncationMode(.tail)
                     .foregroundStyle(colorScheme == .dark ? .white : .black)
                 Text(user.email)
-                    .font(.footnote)
+                    .fontSize(.footnote)
                     .foregroundStyle(Color.gray500)
                     .lineLimit(1)
                     .truncationMode(.middle)
@@ -44,14 +44,33 @@ public struct UserRow: View {
 }
 
 #Preview {
-    UserRow(
-        VOUser.Entity(
-            id: UUID().uuidString,
-            username: "brucelee@example.com",
-            email: "brucelee@example.com",
-            fullName: "Bruce Lee",
-            createTime: Date().ISO8601Format()
+    List {
+        UserRow(
+            VOUser.Entity(
+                id: UUID().uuidString,
+                username: "bruce.wayne@voltaserve.com",
+                email: "bruce.wayne@voltaserve.com",
+                fullName: "Bruce Wayne",
+                createTime: Date().ISO8601Format()
+            )
         )
-    )
-    .padding()
+        UserRow(
+            VOUser.Entity(
+                id: UUID().uuidString,
+                username: "tony.stark@voltaserve.com",
+                email: "tony.stark@voltaserve.com",
+                fullName: "Tony Stark",
+                createTime: Date().ISO8601Format()
+            )
+        )
+        UserRow(
+            VOUser.Entity(
+                id: UUID().uuidString,
+                username: "natasha.romanoff@voltaserve.com",
+                email: "natasha.romanoff@voltaserve.com",
+                fullName: "Natasha Romanoff",
+                createTime: Date().ISO8601Format()
+            )
+        )
+    }
 }

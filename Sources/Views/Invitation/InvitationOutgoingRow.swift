@@ -28,20 +28,30 @@ public struct InvitationOutgoingRow: View {
                     .lineLimit(1)
                     .truncationMode(.middle)
                 Text(invitation.createTime.relativeDate())
-                    .font(.footnote)
+                    .fontSize(.footnote)
                     .foregroundStyle(Color.gray500)
-                //                if UIDevice.current.userInterfaceIdiom == .phone {
-                //                    InvitationStatusBadge(invitation.status)
-                //                }
-                //                if verticalStatus && UIDevice.current.userInterfaceIdiom == .pad {
-                //                    InvitationStatusBadge(invitation.status)
-                //                }
+                if verticalStatus {
+                    #if os(iOS)
+                        if UIDevice.current.userInterfaceIdiom == .phone {
+                            InvitationStatusBadge(invitation.status)
+                        }
+                        if UIDevice.current.userInterfaceIdiom == .pad {
+                            InvitationStatusBadge(invitation.status)
+                        }
+                    #elseif os(macOS)
+                        InvitationStatusBadge(invitation.status)
+                    #endif
+                }
             }
             if !verticalStatus {
-                //                Spacer()
-                //                if UIDevice.current.userInterfaceIdiom == .pad {
-                //                    InvitationStatusBadge(invitation.status)
-                //                }
+                Spacer()
+                #if os(iOS)
+                    if UIDevice.current.userInterfaceIdiom == .pad {
+                        InvitationStatusBadge(invitation.status)
+                    }
+                #elseif os(macOS)
+                    InvitationStatusBadge(invitation.status)
+                #endif
             }
         }
     }
@@ -50,58 +60,56 @@ public struct InvitationOutgoingRow: View {
 #Preview {
     let owner = VOUser.Entity(
         id: UUID().uuidString,
-        username: "anass@example.com",
-        email: "anass@example.com",
+        username: "anass@voltaserve.com",
+        email: "anass@voltaserve.com",
         fullName: "Anass",
         createTime: Date().ISO8601Format()
     )
-    NavigationView {
-        List {
-            InvitationOutgoingRow(
-                VOInvitation.Entity(
+    List {
+        InvitationOutgoingRow(
+            VOInvitation.Entity(
+                id: UUID().uuidString,
+                owner: owner,
+                email: "bruce.wayne@voltaserve.com",
+                organization: VOOrganization.Entity(
                     id: UUID().uuidString,
-                    owner: owner,
-                    email: "bruce@koupr.com",
-                    organization: VOOrganization.Entity(
-                        id: UUID().uuidString,
-                        name: "Koupr",
-                        permission: .none,
-                        createTime: Date().ISO8601Format()
-                    ),
-                    status: .pending,
-                    createTime: "2024-09-23T10:00:00Z"
-                )
+                    name: "Koupr",
+                    permission: .none,
+                    createTime: Date().ISO8601Format()
+                ),
+                status: .pending,
+                createTime: "2024-09-23T10:00:00Z"
             )
-            InvitationOutgoingRow(
-                VOInvitation.Entity(
+        )
+        InvitationOutgoingRow(
+            VOInvitation.Entity(
+                id: UUID().uuidString,
+                owner: owner,
+                email: "tony.stark@voltaserve.com",
+                organization: VOOrganization.Entity(
                     id: UUID().uuidString,
-                    owner: owner,
-                    email: "tony@koupr.com",
-                    organization: VOOrganization.Entity(
-                        id: UUID().uuidString,
-                        name: "Apple",
-                        permission: .none,
-                        createTime: Date().ISO8601Format()
-                    ),
-                    status: .accepted,
-                    createTime: "2024-09-22T19:53:41Z"
-                )
+                    name: "Apple",
+                    permission: .none,
+                    createTime: Date().ISO8601Format()
+                ),
+                status: .accepted,
+                createTime: "2024-09-22T19:53:41Z"
             )
-            InvitationOutgoingRow(
-                VOInvitation.Entity(
+        )
+        InvitationOutgoingRow(
+            VOInvitation.Entity(
+                id: UUID().uuidString,
+                owner: owner,
+                email: "natasha.romanoff@voltaserve.com",
+                organization: VOOrganization.Entity(
                     id: UUID().uuidString,
-                    owner: owner,
-                    email: "steve@koupr.com",
-                    organization: VOOrganization.Entity(
-                        id: UUID().uuidString,
-                        name: "Qualcomm",
-                        permission: .none,
-                        createTime: Date().ISO8601Format()
-                    ),
-                    status: .declined,
-                    createTime: "2024-08-22T19:53:41Z"
-                )
+                    name: "Qualcomm",
+                    permission: .none,
+                    createTime: Date().ISO8601Format()
+                ),
+                status: .declined,
+                createTime: "2024-08-22T19:53:41Z"
             )
-        }
+        )
     }
 }

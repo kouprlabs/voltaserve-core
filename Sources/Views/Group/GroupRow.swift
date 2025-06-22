@@ -27,7 +27,7 @@ public struct GroupRow: View {
                     .truncationMode(.middle)
                     .foregroundStyle(colorScheme == .dark ? .white : .black)
                 Text(group.organization.name)
-                    .font(.footnote)
+                    .fontSize(.footnote)
                     .foregroundStyle(Color.gray500)
                     .lineLimit(1)
                     .truncationMode(.tail)
@@ -37,19 +37,48 @@ public struct GroupRow: View {
 }
 
 #Preview {
-    GroupRow(
-        .init(
-            id: UUID().uuidString,
-            name: "My Group",
-            organization: .init(
+    List {
+        GroupRow(
+            .init(
                 id: UUID().uuidString,
-                name: "My Organization",
+                name: "Wayne's Group",
+                organization: .init(
+                    id: UUID().uuidString,
+                    name: "Wayne's Organization",
+                    permission: .owner,
+                    createTime: Date().ISO8601Format()
+                ),
                 permission: .owner,
                 createTime: Date().ISO8601Format()
-            ),
-            permission: .owner,
-            createTime: Date().ISO8601Format()
+            )
         )
-    )
-    .padding()
+        GroupRow(
+            .init(
+                id: UUID().uuidString,
+                name: "Stark's Group",
+                organization: .init(
+                    id: UUID().uuidString,
+                    name: "Stark's Organization",
+                    permission: .owner,
+                    createTime: Date().ISO8601Format()
+                ),
+                permission: .owner,
+                createTime: Date().ISO8601Format()
+            )
+        )
+        GroupRow(
+            .init(
+                id: UUID().uuidString,
+                name: "Romanoff's Group",
+                organization: .init(
+                    id: UUID().uuidString,
+                    name: "Romanoff's Organization",
+                    permission: .owner,
+                    createTime: Date().ISO8601Format()
+                ),
+                permission: .owner,
+                createTime: Date().ISO8601Format()
+            )
+        )
+    }
 }

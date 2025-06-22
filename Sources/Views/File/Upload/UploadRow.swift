@@ -24,24 +24,24 @@ public struct UploadRow: View {
                 if #available(iOS 18.0, macOS 15.0, *) {
                     Image(systemName: "arrow.trianglehead.2.clockwise.rotate.90.circle")
                         .symbolEffect(.rotate, options: .repeat(.continuous))
-                        .font(.title2)
+                        .fontSize(.title2)
                         .foregroundStyle(Color.blue400)
                 }
             } else if upload.status == .waiting {
                 Image(systemName: "hourglass.circle")
-                    .font(.title2)
+                    .fontSize(.title2)
                     .foregroundStyle(Color.gray400)
             } else if upload.status == .success {
                 Image(systemName: "checkmark.circle")
-                    .font(.title2)
+                    .fontSize(.title2)
                     .foregroundStyle(Color.green400)
             } else if upload.status == .error {
                 Image(systemName: "exclamationmark.circle")
-                    .font(.title2)
+                    .fontSize(.title2)
                     .foregroundStyle(Color.red400)
             } else if upload.status == .cancelled {
                 Image(systemName: "exclamationmark.triangle")
-                    .font(.title2)
+                    .fontSize(.title2)
                     .foregroundStyle(Color.yellow400)
             }
             VStack(alignment: .leading, spacing: VOMetrics.spacingXs) {
@@ -50,7 +50,7 @@ public struct UploadRow: View {
                     .truncationMode(.middle)
                 if !upload.message.isEmpty {
                     Text(upload.message)
-                        .font(.footnote)
+                        .fontSize(.footnote)
                         .foregroundStyle(Color.gray500)
                         .lineLimit(3)
                         .truncationMode(.tail)
@@ -59,7 +59,6 @@ public struct UploadRow: View {
                     ProgressView(value: upload.progress, total: 100)
                         .progressViewStyle(.linear)
                         .tint(colorScheme == .dark ? .white : .black)
-                        .padding(.vertical, VOMetrics.spacingXs)
                 }
             }
         }
@@ -67,53 +66,39 @@ public struct UploadRow: View {
 }
 
 #Preview {
-    NavigationStack {
-        Form {
-            List {
-                NavigationLink(destination: Color.clear) {
-                    UploadRow(.init(URL("http://voltaserve.com/example/file.txt")!))
-                }
-                NavigationLink(destination: Color.clear) {
-                    UploadRow(
-                        .init(
-                            URL("http://voltaserve.com/example/image.jpg")!,
-                            progress: 50,
-                            status: .running,
-                            message: "Lorem ipsum."
-                        )
-                    )
-                }
-                NavigationLink(destination: Color.clear) {
-                    UploadRow(
-                        .init(
-                            URL("http://voltaserve.com/example/image.jpg")!,
-                            progress: 100,
-                            status: .success,
-                            message: "Lorem ipsum."
-                        )
-                    )
-                }
-                NavigationLink(destination: Color.clear) {
-                    UploadRow(
-                        .init(
-                            URL("http://voltaserve.com/example/image.jpg")!,
-                            progress: 100,
-                            status: .error,
-                            message: "Lorem ipsum."
-                        )
-                    )
-                }
-                NavigationLink(destination: Color.clear) {
-                    UploadRow(
-                        .init(
-                            URL("http://voltaserve.com/example/image.jpg")!,
-                            progress: 100,
-                            status: .cancelled,
-                            message: "Lorem ipsum."
-                        )
-                    )
-                }
-            }
-        }
+    List {
+        UploadRow(.init(URL("http://voltaserve.com/example/file.txt")!))
+        UploadRow(
+            .init(
+                URL("http://voltaserve.com/example/image.jpg")!,
+                progress: 50,
+                status: .running,
+                message: "Lorem ipsum."
+            )
+        )
+        UploadRow(
+            .init(
+                URL("http://voltaserve.com/example/image.jpg")!,
+                progress: 100,
+                status: .success,
+                message: "Lorem ipsum."
+            )
+        )
+        UploadRow(
+            .init(
+                URL("http://voltaserve.com/example/image.jpg")!,
+                progress: 100,
+                status: .error,
+                message: "Lorem ipsum."
+            )
+        )
+        UploadRow(
+            .init(
+                URL("http://voltaserve.com/example/image.jpg")!,
+                progress: 100,
+                status: .cancelled,
+                message: "Lorem ipsum."
+            )
+        )
     }
 }

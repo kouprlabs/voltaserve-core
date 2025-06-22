@@ -32,3 +32,65 @@ public struct SnapshotRow: View {
         }
     }
 }
+
+#Preview {
+    List {
+        SnapshotRow(
+            .init(
+                id: UUID().uuidString,
+                version: 3,
+                original: .init(size: 10000),
+                capabilities: .init(
+                    original: true,
+                    preview: true,
+                    ocr: false,
+                    text: true,
+                    summary: true,
+                    entities: false,
+                    mosaic: true,
+                    thumbnail: true
+                ),
+                isActive: true,
+                createTime: ISO8601DateFormatter().string(from: Date().addingTimeInterval(-5 * 60))
+            )
+        )
+        SnapshotRow(
+            .init(
+                id: UUID().uuidString,
+                version: 2,
+                original: .init(size: 10000),
+                capabilities: .init(
+                    original: true,
+                    preview: true,
+                    ocr: false,
+                    text: true,
+                    summary: true,
+                    entities: false,
+                    mosaic: true,
+                    thumbnail: true
+                ),
+                isActive: false,
+                createTime: ISO8601DateFormatter().string(from: Date().addingTimeInterval(-60 * 60))
+            )
+        )
+        SnapshotRow(
+            .init(
+                id: UUID().uuidString,
+                version: 1,
+                original: .init(size: 10000),
+                capabilities: .init(
+                    original: true,
+                    preview: true,
+                    ocr: false,
+                    text: true,
+                    summary: true,
+                    entities: false,
+                    mosaic: true,
+                    thumbnail: true
+                ),
+                isActive: false,
+                createTime: ISO8601DateFormatter().string(from: Date().addingTimeInterval(-2 * 60 * 60))
+            )
+        )
+    }
+}

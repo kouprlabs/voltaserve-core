@@ -30,13 +30,30 @@ public struct OrganizationRow: View {
 }
 
 #Preview {
-    OrganizationRow(
-        .init(
-            id: UUID().uuidString,
-            name: "My Organization",
-            permission: .owner,
-            createTime: Date().ISO8601Format()
+    List {
+        OrganizationRow(
+            .init(
+                id: UUID().uuidString,
+                name: "Wayne's Organization",
+                permission: .owner,
+                createTime: Date().ISO8601Format()
+            )
         )
-    )
-    .padding()
+        OrganizationRow(
+            .init(
+                id: UUID().uuidString,
+                name: "Stark's Organization",
+                permission: .owner,
+                createTime: Date().ISO8601Format()
+            )
+        )
+        OrganizationRow(
+            .init(
+                id: UUID().uuidString,
+                name: "Romanoff's Organization",
+                permission: .owner,
+                createTime: Date().ISO8601Format()
+            )
+        )
+    }
 }

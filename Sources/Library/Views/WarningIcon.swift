@@ -15,7 +15,7 @@ public struct VOWarningIcon: View {
 
     public var body: some View {
         Image(systemName: "exclamationmark.triangle")
-            .font(.title)
+            .fontSize(.title)
             .foregroundStyle(Color.yellow400)
     }
 }
