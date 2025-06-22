@@ -14,11 +14,13 @@ let package = Package(
             targets: ["VoltaserveCore"]
         )
     ],
-    dependencies: [],
+    dependencies: [
+        .package(url: "https://github.com/onevcat/Kingfisher.git", from: "8.3.2")
+    ],
     targets: [
         .target(
             name: "VoltaserveCore",
-            dependencies: [],
+            dependencies: ["Kingfisher"],
             path: "Sources"
         ),
         .testTarget(

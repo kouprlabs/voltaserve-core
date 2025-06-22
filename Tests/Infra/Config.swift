@@ -9,7 +9,6 @@
 // AGPL-3.0-only in the root of this repository.
 
 import Foundation
-import VoltaserveCore
 
 struct Config {
     let apiURL = "http://\(ProcessInfo.processInfo.environment["API_HOST"] ?? "localhost"):8080"
