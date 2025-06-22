@@ -10,7 +10,7 @@
 
 import SwiftUI
 
-struct ServerRow: View {
+public struct ServerRow: View {
     @Environment(\.colorScheme) private var colorScheme
     private let server: Server
 
