@@ -15,10 +15,12 @@ public struct FileCell: View {
     @Environment(\.colorScheme) private var colorScheme
     @ObservedObject private var fileStore: FileStore
     private let file: VOFile.Entity
+    private let modifier: ((AnyView) -> AnyView)?
 
-    public init(_ file: VOFile.Entity, fileStore: FileStore) {
+    public init(_ file: VOFile.Entity, fileStore: FileStore, modifier: ((AnyView) -> AnyView)? = nil) {
         self.file = file
         self.fileStore = fileStore
+        self.modifier = modifier
     }
 
     public var body: some View {
@@ -29,7 +31,7 @@ public struct FileCell: View {
                     let fileExtension = thumbnail.fileExtension,
                     let url = fileStore.urlForThumbnail(file.id, fileExtension: String(fileExtension.dropFirst()))
                 {
-                    FileCellThumbnail(url: url, file: file, fileStore: fileStore) {
+                    FileCellThumbnail(url: url, file: file, fileStore: fileStore, modifier: modifier) {
                         fileIcon
                     }
                 } else {

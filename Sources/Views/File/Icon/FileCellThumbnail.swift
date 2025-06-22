@@ -20,17 +20,23 @@ private let customKingfisherManager: KingfisherManager = {
     return KingfisherManager(downloader: downloader, cache: .default)
 }()
 
-public struct FileCellThumbnail<FallbackContent: View>: View {
+public struct FileCellThumbnail<V: View>: View {
     @ObservedObject private var fileStore: FileStore
     @Environment(\.colorScheme) private var colorScheme
     private let url: URL
-    private let fallback: () -> FallbackContent
+    private let modifier: ((AnyView) -> AnyView)?
+    private let fallback: () -> V
     private let file: VOFile.Entity
 
     public init(
-        url: URL, file: VOFile.Entity, fileStore: FileStore, @ViewBuilder fallback: @escaping () -> FallbackContent
+        url: URL,
+        file: VOFile.Entity,
+        fileStore: FileStore,
+        modifier: ((AnyView) -> AnyView)? = nil,
+        @ViewBuilder fallback: @escaping () -> V
     ) {
         self.url = url
+        self.modifier = modifier
         self.fallback = fallback
         self.file = file
         self.fileStore = fileStore
@@ -46,8 +52,9 @@ public struct FileCellThumbnail<FallbackContent: View>: View {
             .resizable()
             .aspectRatio(contentMode: .fit)
             .clipShape(RoundedRectangle(cornerRadius: VOMetrics.borderRadiusSm))
-            //            .contentShape(.contextMenuPreview, RoundedRectangle(cornerRadius: VOMetrics.borderRadiusSm))
-            //            .fileActions(file, fileStore: fileStore)
+            .modifierIf(modifier != nil) {
+                modifier!(AnyView($0))
+            }
             .overlay {
                 RoundedRectangle(cornerRadius: VOMetrics.borderRadiusSm)
                     .strokeBorder(Color.borderColor(colorScheme: colorScheme), lineWidth: 1)
