@@ -15,7 +15,8 @@ public enum VOMetrics {
     public static let headingFontSize: CGFloat = 24
     public static let headingFontWeight: Font.Weight = .medium
     public static let bodyFontFamily = "IBM Plex Sans Var"
-    public static let bodyFontSize: CGFloat = 17
+    public static let bodyFontSizeTouch: CGFloat = 17
+    public static let bodyFontSizeMac: CGFloat = 13
     public static let bodyFontWeight: Font.Weight = .regular
     public static let spacingXs: CGFloat = 5
     public static let spacingSm: CGFloat = 10
