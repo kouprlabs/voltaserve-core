@@ -11,17 +11,7 @@
 import Kingfisher
 import SwiftUI
 
-private let customKingfisherManager: KingfisherManager = {
-    let config = URLSessionConfiguration.default
-    config.timeoutIntervalForRequest = 30
-    config.timeoutIntervalForResource = 60
-    let downloader = ImageDownloader(name: "custom.downloader")
-    downloader.sessionConfiguration = config
-    return KingfisherManager(downloader: downloader, cache: .default)
-}()
-
 public struct FileCellThumbnail<V: View>: View {
-    @ObservedObject private var fileStore: FileStore
     @Environment(\.colorScheme) private var colorScheme
     private let url: URL
     private let modifier: ((AnyView) -> AnyView)?
@@ -31,7 +21,6 @@ public struct FileCellThumbnail<V: View>: View {
     public init(
         url: URL,
         file: VOFile.Entity,
-        fileStore: FileStore,
         modifier: ((AnyView) -> AnyView)? = nil,
         @ViewBuilder fallback: @escaping () -> V
     ) {
@@ -39,7 +28,6 @@ public struct FileCellThumbnail<V: View>: View {
         self.modifier = modifier
         self.fallback = fallback
         self.file = file
-        self.fileStore = fileStore
     }
 
     public var body: some View {
@@ -71,3 +59,12 @@ public struct FileCellThumbnail<V: View>: View {
             .frame(maxWidth: FileCellMetrics.frameSize.width, maxHeight: FileCellMetrics.frameSize.height)
     }
 }
+
+private let customKingfisherManager: KingfisherManager = {
+    let config = URLSessionConfiguration.default
+    config.timeoutIntervalForRequest = 30
+    config.timeoutIntervalForResource = 60
+    let downloader = ImageDownloader(name: "custom.downloader")
+    downloader.sessionConfiguration = config
+    return KingfisherManager(downloader: downloader, cache: .default)
+}()

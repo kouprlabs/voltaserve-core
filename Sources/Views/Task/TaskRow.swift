@@ -21,7 +21,7 @@ public struct TaskRow: View {
     }
 
     public var body: some View {
-        VStack {
+        VStack(alignment: .leading, spacing: VOMetrics.spacingXs) {
             HStack(spacing: VOMetrics.spacingSm) {
                 if task.status == .running, task.isIndeterminate {
                     if #available(iOS 18.0, macOS 15.0, *) {
