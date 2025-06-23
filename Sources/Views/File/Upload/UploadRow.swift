@@ -67,10 +67,10 @@ public struct UploadRow: View {
 
 #Preview {
     List {
-        UploadRow(.init(URL("http://voltaserve.com/example/file.txt")!))
+        UploadRow(.init(URL(filePath: "http://voltaserve.com/example/file.txt")!))
         UploadRow(
             .init(
-                URL("http://voltaserve.com/example/image.jpg")!,
+                URL(filePath: "http://voltaserve.com/example/image.jpg")!,
                 progress: 50,
                 status: .running,
                 message: "Lorem ipsum."
@@ -78,7 +78,7 @@ public struct UploadRow: View {
         )
         UploadRow(
             .init(
-                URL("http://voltaserve.com/example/image.jpg")!,
+                URL(filePath: "http://voltaserve.com/example/image.jpg")!,
                 progress: 100,
                 status: .success,
                 message: "Lorem ipsum."
@@ -86,7 +86,7 @@ public struct UploadRow: View {
         )
         UploadRow(
             .init(
-                URL("http://voltaserve.com/example/image.jpg")!,
+                URL(filePath: "http://voltaserve.com/example/image.jpg")!,
                 progress: 100,
                 status: .error,
                 message: "Lorem ipsum."
@@ -94,7 +94,7 @@ public struct UploadRow: View {
         )
         UploadRow(
             .init(
-                URL("http://voltaserve.com/example/image.jpg")!,
+                URL(filePath: "http://voltaserve.com/example/image.jpg")!,
                 progress: 100,
                 status: .cancelled,
                 message: "Lorem ipsum."

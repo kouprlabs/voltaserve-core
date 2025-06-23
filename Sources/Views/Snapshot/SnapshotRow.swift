@@ -18,18 +18,17 @@ public struct SnapshotRow: View {
     }
 
     public var body: some View {
-        HStack(spacing: VOMetrics.spacingSm) {
-            VStack(alignment: .leading, spacing: VOMetrics.spacingXs) {
-                Text(snapshot.createTime.relativeDate())
-                LazyHStack {
-                    if snapshot.isActive {
-                        VOColorBadge("Active", color: .green, style: .outline)
-                    }
-                    VOColorBadge("Version \(snapshot.version)", color: .gray400, style: .outline)
-                    VOColorBadge(snapshot.original.size.prettyBytes(), color: .gray400, style: .outline)
+        VStack(alignment: .leading, spacing: VOMetrics.spacingXs) {
+            Text(snapshot.createTime.relativeDate())
+            LazyHStack {
+                if snapshot.isActive {
+                    VOColorBadge("Active", color: .green, style: .outline)
                 }
+                VOColorBadge("Version \(snapshot.version)", color: .gray400, style: .outline)
+                VOColorBadge(snapshot.original.size.prettyBytes(), color: .gray400, style: .outline)
             }
         }
+        .padding(.vertical, VOMetrics.spacingXs)
     }
 }
 

@@ -25,6 +25,9 @@ public struct VOFormButtonLabel: View {
             if isLoading {
                 Spacer()
                 ProgressView()
+                    #if os(macOS)
+                        .controlSize(.small)
+                    #endif
             }
         }
     }
@@ -38,4 +41,5 @@ public struct VOFormButtonLabel: View {
         }
         .disabled(true)
     }
+    .padding()
 }

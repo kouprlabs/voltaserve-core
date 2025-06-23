@@ -30,3 +30,14 @@ public struct PasswordHint: View {
         .foregroundStyle(isFulfilled ? .green : .secondary)
     }
 }
+
+#Preview {
+    VStack {
+        PasswordHint("Length is at least 8 characters.", isFulfilled: true)
+        PasswordHint("Contains at least 1 lowercase character.", isFulfilled: false)
+        PasswordHint("Contains at least 1 uppercase character.", isFulfilled: false)
+        PasswordHint("Contains at least 1 number.", isFulfilled: false)
+        PasswordHint("Contains at least 1 special character(s) (!#$%).", isFulfilled: false)
+    }
+    .padding()
+}

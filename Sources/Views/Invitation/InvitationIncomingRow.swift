@@ -19,7 +19,7 @@ public struct InvitationIncomingRow: View {
     }
 
     public var body: some View {
-        VStack(alignment: .leading) {
+        VStack(alignment: .leading, spacing: VOMetrics.spacingXs) {
             if let owner = invitation.owner {
                 Text(owner.email)
                     .foregroundStyle(colorScheme == .dark ? .white : .black)
@@ -30,6 +30,7 @@ public struct InvitationIncomingRow: View {
                 .fontSize(.footnote)
                 .foregroundStyle(Color.gray500)
         }
+        .padding(.vertical, VOMetrics.spacingXs)
     }
 }
 

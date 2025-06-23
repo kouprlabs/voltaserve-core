@@ -33,4 +33,5 @@ extension View {
 #Preview {
     Text("Lorem Ipsum")
         .voHeading(fontSize: VOMetrics.headingFontSize)
+        .padding()
 }

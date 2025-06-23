@@ -45,4 +45,5 @@ public struct VOPermissionBadge: View {
         VOPermissionBadge(.editor)
         VOPermissionBadge(.owner)
     }
+    .padding()
 }

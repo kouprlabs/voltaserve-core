@@ -38,4 +38,5 @@ public struct VONumberBadge: View {
         VONumberBadge(100)
         VONumberBadge(1000)
     }
+    .padding()
 }

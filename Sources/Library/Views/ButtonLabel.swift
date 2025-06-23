@@ -14,13 +14,13 @@ public struct VOButtonLabel: View {
     private let text: String?
     private let systemImage: String?
     private let isLoading: Bool
-    private let progressViewTint: Color
+    private let progressViewTint: Color?
 
     public init(
         _ text: String? = nil,
         systemImage: String? = nil,
         isLoading: Bool = false,
-        progressViewTint: Color = .primary
+        progressViewTint: Color? = nil
     ) {
         self.text = text
         self.systemImage = systemImage
@@ -39,6 +39,9 @@ public struct VOButtonLabel: View {
             if isLoading {
                 ProgressView()
                     .tint(progressViewTint)
+                    #if os(macOS)
+                        .controlSize(.small)
+                    #endif
             }
         }
         .frame(maxWidth: .infinity)
@@ -47,4 +50,5 @@ public struct VOButtonLabel: View {
 
 #Preview {
     VOButtonLabel("Lorem Ipsum", isLoading: true)
+        .padding()
 }

@@ -25,18 +25,18 @@ public struct VOColorBadge: View {
         Text(text)
             .fontSize(.footnote)
             .padding(.horizontal)
-            .frame(height: 20)
+            .frame(height: VOMetrics.badgeHeight)
             .modifierIf(style == .fill) {
                 $0
                     .foregroundStyle(color.textColor())
                     .background(color)
-                    .clipShape(RoundedRectangle(cornerRadius: 10))
+                    .clipShape(RoundedRectangle(cornerRadius: VOMetrics.badgeHeight / 2))
             }
             .modifierIf(style == .outline) {
                 $0
                     .foregroundStyle(color)
                     .overlay {
-                        RoundedRectangle(cornerRadius: 10)
+                        RoundedRectangle(cornerRadius: VOMetrics.badgeHeight / 2)
                             .strokeBorder(color, lineWidth: 1)
                     }
             }
@@ -57,4 +57,5 @@ public struct VOColorBadge: View {
         VOColorBadge("Purple", color: .purple400, style: .outline)
         VOColorBadge("Green", color: .green400, style: .outline)
     }
+    .padding()
 }

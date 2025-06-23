@@ -26,3 +26,11 @@ public struct InsightsEntityRow: View {
         }
     }
 }
+
+#Preview {
+    List {
+        InsightsEntityRow(.init(text: "Voltaserve", label: "ORG", frequency: 30))
+        InsightsEntityRow(.init(text: "Bruce Wayne", label: "PER", frequency: 20))
+        InsightsEntityRow(.init(text: "Frankfurt", label: "GPE", frequency: 10))
+    }
+}

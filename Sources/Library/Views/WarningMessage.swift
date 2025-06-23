@@ -34,7 +34,7 @@ public struct VOWarningMessage: View {
 }
 
 #Preview {
-    VStack(spacing: VOMetrics.spacing2Xl) {
+    VStack(spacing: VOMetrics.spacingXl) {
         VOWarningMessage("Lorem ipsum dolor sit amet.")
         // swift-format-ignore
         // swiftlint:disable:next line_length

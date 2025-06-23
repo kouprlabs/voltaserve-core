@@ -15,12 +15,13 @@ let package = Package(
         )
     ],
     dependencies: [
-        .package(url: "https://github.com/onevcat/Kingfisher.git", from: "8.3.2")
+        .package(url: "https://github.com/onevcat/Kingfisher.git", from: "8.3.2"),
+        .package(url: "https://github.com/warrenm/GLTFKit2.git", from: "0.5.11"),
     ],
     targets: [
         .target(
             name: "VoltaserveCore",
-            dependencies: ["Kingfisher"],
+            dependencies: ["Kingfisher", "GLTFKit2"],
             path: "Sources",
             resources: [.process("Resources")]
         ),

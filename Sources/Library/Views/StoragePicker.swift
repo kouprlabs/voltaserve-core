@@ -80,8 +80,9 @@ public struct VOStoragePicker: View {
         }
         Section {
             if let value {
-                Text("\(value)")
+                Text("\(value) byte(s)")
             }
         }
     }
+    .padding()
 }

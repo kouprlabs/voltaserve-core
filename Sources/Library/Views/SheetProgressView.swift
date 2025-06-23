@@ -15,10 +15,13 @@ public struct VOSheetProgressView: View {
 
     public var body: some View {
         ProgressView()
-            .frame(width: 30, height: 30)
+            #if os(macOS)
+                .controlSize(.small)
+            #endif
     }
 }
 
 #Preview {
     VOSheetProgressView()
+        .padding()
 }

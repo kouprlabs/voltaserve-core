@@ -68,3 +68,52 @@ private let customKingfisherManager: KingfisherManager = {
     downloader.sessionConfiguration = config
     return KingfisherManager(downloader: downloader, cache: .default)
 }()
+
+#Preview {
+    FileCellThumbnail(
+        url: URL("http://exampe.com/image.jpg")!,
+        file: .init(
+            id: UUID().uuidString,
+            name: "Voltaserve.pdf",
+            type: .file,
+            parentID: nil,
+            permission: .owner,
+            isShared: true,
+            snapshot: .init(
+                id: UUID().uuidString,
+                version: 1,
+                original: .init(fileExtension: ".pdf", size: 10000),
+                capabilities: .init(
+                    original: true,
+                    preview: true,
+                    ocr: false,
+                    text: true,
+                    summary: true,
+                    entities: false,
+                    mosaic: false,
+                    thumbnail: false
+                ),
+                isActive: true,
+                createTime: Date().iso8601
+            ),
+            workspace: VOWorkspace.Entity(
+                id: UUID().uuidString,
+                name: "Romanoff's Workspace",
+                permission: .owner,
+                storageCapacity: 100_000_000,
+                rootID: UUID().uuidString,
+                organization: VOOrganization.Entity(
+                    id: UUID().uuidString,
+                    name: "Romanoff's Organization",
+                    permission: .owner,
+                    createTime: Date().iso8601
+                ),
+                createTime: Date().iso8601
+            ),
+            createTime: Date().iso8601
+        )
+    ) {
+        Image("icon-pdf", bundle: .module)
+    }
+    .padding()
+}

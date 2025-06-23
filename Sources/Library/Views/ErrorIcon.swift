@@ -22,4 +22,5 @@ public struct VOErrorIcon: View {
 
 #Preview {
     VOErrorIcon()
+        .padding()
 }

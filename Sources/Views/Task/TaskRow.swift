@@ -22,7 +22,7 @@ public struct TaskRow: View {
 
     public var body: some View {
         VStack(alignment: .leading, spacing: VOMetrics.spacingXs) {
-            HStack(spacing: VOMetrics.spacingSm) {
+            HStack(spacing: VOMetrics.spacing) {
                 if task.status == .running, task.isIndeterminate {
                     if #available(iOS 18.0, macOS 15.0, *) {
                         Image(systemName: "arrow.trianglehead.2.clockwise.rotate.90.circle")
@@ -44,7 +44,7 @@ public struct TaskRow: View {
                         .foregroundStyle(Color.red400)
                 }
                 if let object = task.payload?.object {
-                    VStack(alignment: .leading) {
+                    VStack(alignment: .leading, spacing: VOMetrics.spacingXs) {
                         Text(object)
                             .lineLimit(1)
                             .truncationMode(.middle)
@@ -58,7 +58,7 @@ public struct TaskRow: View {
                             .foregroundStyle(Color.gray500)
                     }
                 } else {
-                    VStack(alignment: .leading) {
+                    VStack(alignment: .leading, spacing: VOMetrics.spacingXs) {
                         Text(task.name)
                             .fontSize(.footnote)
                             .foregroundStyle(Color.gray500)
@@ -79,6 +79,7 @@ public struct TaskRow: View {
                     .tint(colorScheme == .dark ? .white : .black)
             }
         }
+        .padding(.vertical, VOMetrics.spacingXs)
     }
 }
 

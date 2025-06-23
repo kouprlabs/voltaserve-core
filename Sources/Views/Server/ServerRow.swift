@@ -43,3 +43,30 @@ public struct ServerRow: View {
             .frame(width: 20, height: 20)
     }
 }
+
+#Preview {
+    List {
+        ServerRow(
+            .init(
+                id: UUID().uuidString,
+                name: "Cloud",
+                apiURL: "http://api.example.com",
+                idpURL: "http://idp.example.com",
+                murphURL: "http://murph.example.com",
+                signInStrategy: SignInStrategy.apple.rawValue,
+                isActive: true
+            )
+        )
+        ServerRow(
+            .init(
+                id: UUID().uuidString,
+                name: "Localhost",
+                apiURL: "http://localhost:8080",
+                idpURL: "http://localhost:8081",
+                murphURL: "http://localhost:8087",
+                signInStrategy: SignInStrategy.local.rawValue,
+                isActive: false
+            )
+        )
+    }
+}

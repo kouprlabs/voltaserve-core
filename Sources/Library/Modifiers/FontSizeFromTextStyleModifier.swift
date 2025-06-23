@@ -10,10 +10,10 @@
 
 import SwiftUI
 
-struct FontSizeFromTextStyleModifier: ViewModifier {
+public struct FontSizeFromTextStyleModifier: ViewModifier {
     let style: Font.TextStyle
 
-    func body(content: Content) -> some View {
+    public func body(content: Content) -> some View {
         #if os(iOS) || os(tvOS) || os(visionOS)
             let size = UIFont.preferredFont(forTextStyle: uiTextStyle(from: style)).pointSize
         #elseif os(macOS)
@@ -68,4 +68,18 @@ extension View {
     func fontSize(_ style: Font.TextStyle) -> some View {
         self.modifier(FontSizeFromTextStyleModifier(style: style))
     }
+}
+
+#Preview {
+    VStack {
+        Text("Lorem ipsum dolor imet.")
+            .fontSize(.title)
+        Text("Lorem ipsum dolor imet.")
+            .fontSize(.title2)
+        Text("Lorem ipsum dolor imet.")
+            .fontSize(.body)
+        Text("Lorem ipsum dolor imet.")
+            .fontSize(.footnote)
+    }
+    .padding()
 }

@@ -28,11 +28,11 @@ public struct VOButton: ViewModifier {
     public func body(content: Content) -> some View {
         if let width {
             content
-                .frame(width: width, height: VOButtonMetrics.height)
+                .frame(width: width, height: VOMetrics.controlHeight)
                 .modifier(VOButtonCommons(self))
         } else {
             content
-                .frame(height: VOButtonMetrics.height)
+                .frame(height: VOMetrics.controlHeight)
                 .frame(maxWidth: .infinity)
                 .modifier(VOButtonCommons(self))
         }
@@ -58,15 +58,13 @@ public struct VOButtonCommons: ViewModifier {
                     $0.foregroundColor(button.color.textColor())
                 }
             #endif
+            .buttonStyle(.plain)
+            .lineLimit(1)
             .background(button.color)
-            .clipShape(RoundedRectangle(cornerRadius: VOButtonMetrics.height / 2))
+            .clipShape(RoundedRectangle(cornerRadius: VOMetrics.controlHeight / 2))
             .opacity(button.isDisabled ? 0.5 : 1)
             .disabled(button.isDisabled)
     }
-}
-
-public enum VOButtonMetrics {
-    public static let height: CGFloat = 40
 }
 
 extension View {
@@ -84,9 +82,9 @@ extension View {
 
     public func voSecondaryButton(width: CGFloat? = nil, isDisabled: Bool = false) -> some View {
         #if os(iOS)
-            return modifier(VOButton(color: Color(.secondarySystemBackground), width: width, isDisabled: isDisabled))
+            modifier(VOButton(color: Color(.secondarySystemBackground), width: width, isDisabled: isDisabled))
         #elseif os(macOS)
-            return modifier(VOButton(color: Color(NSColor.windowBackgroundColor), width: width, isDisabled: isDisabled))
+            modifier(VOButton(color: Color(NSColor.windowBackgroundColor), width: width, isDisabled: isDisabled))
         #endif
     }
 
@@ -121,4 +119,5 @@ extension View {
         .voButton(color: .yellow)
         .padding(.horizontal)
     }
+    .padding()
 }

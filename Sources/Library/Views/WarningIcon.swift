@@ -22,4 +22,5 @@ public struct VOWarningIcon: View {
 
 #Preview {
     VOWarningIcon()
+        .padding()
 }

@@ -15,8 +15,6 @@ public enum VOMetrics {
     public static let headingFontSize: CGFloat = 24
     public static let headingFontWeight: Font.Weight = .medium
     public static let bodyFontFamily = "IBM Plex Sans Var"
-    public static let bodyFontSizeTouch: CGFloat = 17
-    public static let bodyFontSizeMac: CGFloat = 13
     public static let bodyFontWeight: Font.Weight = .regular
     public static let spacingXs: CGFloat = 5
     public static let spacingSm: CGFloat = 10
@@ -31,5 +29,11 @@ public enum VOMetrics {
     public static let borderRadiusXs: CGFloat = 5
     public static let formWidth: CGFloat = 300
     public static let avatarSize: CGFloat = 45
+    #if os(iOS)
+        public static let controlHeight: CGFloat = 40
+    #elseif os(macOS)
+        public static let controlHeight: CGFloat = 30
+    #endif
+    public static let badgeHeight: CGFloat = 20
     public static let sfSymbolScaleEffect = 1.2
 }

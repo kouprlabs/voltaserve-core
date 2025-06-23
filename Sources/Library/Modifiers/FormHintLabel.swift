@@ -15,7 +15,7 @@ public struct VOFormHintLabel: ViewModifier {
 
     public func body(content: Content) -> some View {
         content
-            .font(.custom(VOMetrics.bodyFontFamily, size: 15))
+            .fontSize(.subheadline)
             .foregroundStyle(colorScheme == .dark ? .white : .black)
             .underline()
     }
@@ -33,4 +33,8 @@ extension View {
         Text("Lorem ipsum")
             .voFormHintLabel()
     }
+    #if os(macOS)
+        .buttonStyle(.plain)
+    #endif
+    .padding()
 }

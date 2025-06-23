@@ -19,4 +19,16 @@ extension View {
             self
         }
     }
+
+    #if os(iOS)
+        @ViewBuilder
+        public func modifierIfPad(modifier: (Self) -> some View) -> some View {
+            modifierIf(UIDevice.current.userInterfaceIdiom == .pad, modifier: modifier)
+        }
+
+        @ViewBuilder
+        public func modifierIfPhone(modifier: (Self) -> some View) -> some View {
+            modifierIf(UIDevice.current.userInterfaceIdiom == .phone, modifier: modifier)
+        }
+    #endif
 }

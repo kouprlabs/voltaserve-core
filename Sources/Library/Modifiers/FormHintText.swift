@@ -12,7 +12,7 @@ import SwiftUI
 
 public struct VOFormHintText: ViewModifier {
     public func body(content: Content) -> some View {
-        content.font(.custom(VOMetrics.bodyFontFamily, size: 15))
+        content.fontSize(.subheadline)
     }
 }
 
@@ -25,4 +25,5 @@ extension View {
 #Preview {
     Text("Lorem ipsum dolor imet?")
         .voFormHintText()
+        .padding()
 }
