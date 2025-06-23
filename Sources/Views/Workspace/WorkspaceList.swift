@@ -24,6 +24,8 @@ public struct WorkspaceList: View, ViewDataProvider, LoadStateProvider, TimerLif
     @State private var overviewIsPresented = false
     @State private var newWorkspace: VOWorkspace.Entity?
 
+    public init() {}
+
     public var body: some View {
         NavigationStack {
             VStack {

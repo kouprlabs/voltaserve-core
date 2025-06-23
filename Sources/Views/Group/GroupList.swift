@@ -23,6 +23,8 @@ public struct GroupList: View, ViewDataProvider, LoadStateProvider, TimerLifecyc
     @State private var searchText = ""
     @State private var newGroup: VOGroup.Entity?
 
+    public init() {}
+
     public var body: some View {
         NavigationStack {
             VStack {

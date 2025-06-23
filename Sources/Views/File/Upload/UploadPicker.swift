@@ -15,6 +15,10 @@ import UniformTypeIdentifiers
     public struct UploadPicker: UIViewControllerRepresentable {
         var onFilesPicked: ([URL]) -> Void
 
+        public init(onFilesPicked: @escaping ([URL]) -> Void) {
+            self.onFilesPicked = onFilesPicked
+        }
+
         public func makeCoordinator() -> Coordinator {
             Coordinator(parent: self)
         }
@@ -45,6 +49,10 @@ import UniformTypeIdentifiers
 #elseif os(macOS)
     public struct UploadPicker: NSViewControllerRepresentable {
         var onFilesPicked: ([URL]) -> Void
+
+        public init(onFilesPicked: @escaping ([URL]) -> Void) {
+            self.onFilesPicked = onFilesPicked
+        }
 
         public func makeNSViewController(context: Context) -> NSViewController {
             let panel = NSOpenPanel()

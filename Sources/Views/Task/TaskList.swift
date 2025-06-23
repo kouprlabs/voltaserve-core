@@ -19,6 +19,8 @@ public struct TaskList: View, ViewDataProvider, LoadStateProvider, TimerLifecycl
     @Environment(\.dismiss) private var dismiss
     @State private var isDismissingAll = false
 
+    public init() {}
+
     public var body: some View {
         NavigationStack {
             VStack {

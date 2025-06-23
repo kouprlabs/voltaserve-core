@@ -18,6 +18,8 @@ public struct InvitationIncomingList: View, ViewDataProvider, LoadStateProvider,
     @State private var showInfo = false
     @State private var invitation: VOInvitation.Entity?
 
+    public init() {}
+
     public var body: some View {
         VStack {
             if isLoading {

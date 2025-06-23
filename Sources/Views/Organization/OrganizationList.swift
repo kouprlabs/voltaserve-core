@@ -23,6 +23,8 @@ public struct OrganizationList: View, ViewDataProvider, LoadStateProvider, Timer
     @State private var searchText = ""
     @State private var newOrganization: VOOrganization.Entity?
 
+    public init() {}
+
     public var body: some View {
         NavigationStack {
             VStack {
