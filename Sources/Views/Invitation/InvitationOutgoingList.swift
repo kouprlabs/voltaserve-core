@@ -71,11 +71,11 @@ public struct InvitationOutgoingList: View, ViewDataProvider, LoadStateProvider,
         .toolbar {
             #if os(iOS)
                 ToolbarItem(placement: .topBarLeading) {
-                    Button {
-                        createIsPresented = true
-                    } label: {
-                        Image(systemName: "plus")
-                    }
+                    addButton
+                }
+            #elseif os(macOS)
+                ToolbarItem {
+                    addButton
                 }
             #endif
         }
@@ -98,6 +98,14 @@ public struct InvitationOutgoingList: View, ViewDataProvider, LoadStateProvider,
                 assignSessionToStores(newSession)
                 onAppearOrChange()
             }
+        }
+    }
+
+    private var addButton: some View {
+        Button {
+            createIsPresented = true
+        } label: {
+            Image(systemName: "plus")
         }
     }
 

@@ -75,6 +75,12 @@ public struct OrganizationSelector: View, ViewDataProvider, LoadStateProvider, T
                             ProgressView()
                         }
                     }
+                #elseif os(macOS)
+                    ToolbarItem {
+                        if organizationStore.entitiesIsLoading {
+                            ProgressView()
+                        }
+                    }
                 #endif
             }
         }

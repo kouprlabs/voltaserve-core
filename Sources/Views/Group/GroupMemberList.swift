@@ -79,12 +79,12 @@ public struct GroupMemberList: View, ViewDataProvider, LoadStateProvider, TimerL
             #if os(iOS)
                 if let group = groupStore.current, group.permission.ge(.owner) {
                     ToolbarItem(placement: .topBarLeading) {
-                        Button {
-                            addMemberIsPresentable = true
-                        } label: {
-                            Image(systemName: "plus")
-                        }
+                        addButton
                     }
+                }
+            #elseif os(macOS)
+                ToolbarItem {
+                    addButton
                 }
             #endif
         }
@@ -113,6 +113,14 @@ public struct GroupMemberList: View, ViewDataProvider, LoadStateProvider, TimerL
         .onChange(of: userStore.query) {
             userStore.clear()
             userStore.fetchNextPage()
+        }
+    }
+
+    private var addButton: some View {
+        Button {
+            addMemberIsPresentable = true
+        } label: {
+            Image(systemName: "plus")
         }
     }
 

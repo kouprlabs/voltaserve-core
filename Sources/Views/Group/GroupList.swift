@@ -67,11 +67,11 @@ public struct GroupList: View, ViewDataProvider, LoadStateProvider, TimerLifecyc
             .toolbar {
                 #if os(iOS)
                     ToolbarItem(placement: .topBarLeading) {
-                        Button {
-                            createIsPresented = true
-                        } label: {
-                            Image(systemName: "plus")
-                        }
+                        addButton
+                    }
+                #elseif os(macOS)
+                    ToolbarItem {
+                        addButton
                     }
                 #endif
             }
@@ -107,6 +107,14 @@ public struct GroupList: View, ViewDataProvider, LoadStateProvider, TimerLifecyc
         .onChange(of: groupStore.query) {
             groupStore.clear()
             groupStore.fetchNextPage()
+        }
+    }
+
+    private var addButton: some View {
+        Button {
+            createIsPresented = true
+        } label: {
+            Image(systemName: "plus")
         }
     }
 

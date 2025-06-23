@@ -43,11 +43,19 @@ public struct ServerList: View {
         .toolbar {
             #if os(iOS)
                 ToolbarItem(placement: .topBarLeading) {
-                    NavigationLink(destination: ServerCreate()) {
-                        Image(systemName: "plus")
-                    }
+                    addNavigationLink
+                }
+            #elseif os(macOS)
+                ToolbarItem {
+                    addNavigationLink
                 }
             #endif
+        }
+    }
+
+    private var addNavigationLink: some View {
+        NavigationLink(destination: ServerCreate()) {
+            Image(systemName: "plus")
         }
     }
 }

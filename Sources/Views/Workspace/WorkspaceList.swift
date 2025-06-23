@@ -68,11 +68,11 @@ public struct WorkspaceList: View, ViewDataProvider, LoadStateProvider, TimerLif
             .toolbar {
                 #if os(iOS)
                     ToolbarItem(placement: .topBarLeading) {
-                        Button {
-                            createIsPresented = true
-                        } label: {
-                            Image(systemName: "plus")
-                        }
+                        addButton
+                    }
+                #elseif os(macOS)
+                    ToolbarItem {
+                        addButton
                     }
                 #endif
             }
@@ -108,6 +108,14 @@ public struct WorkspaceList: View, ViewDataProvider, LoadStateProvider, TimerLif
         .onChange(of: workspaceStore.query) {
             workspaceStore.clear()
             workspaceStore.fetchNextPage()
+        }
+    }
+
+    private var addButton: some View {
+        Button {
+            createIsPresented = true
+        } label: {
+            Image(systemName: "plus")
         }
     }
 

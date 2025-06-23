@@ -37,15 +37,23 @@ public struct Viewer: View {
             .toolbar {
                 #if os(iOS)
                     ToolbarItem(placement: .topBarLeading) {
-                        Button {
-                            presentationMode.wrappedValue.dismiss()
-                        } label: {
-                            Image(systemName: "xmark")
-                        }
+                        closeButton
+                    }
+                #elseif os(macOS)
+                    ToolbarItem {
+                        closeButton
                     }
                 #endif
             }
             .edgesIgnoringSafeArea(.bottom)
+        }
+    }
+
+    private var closeButton: some View {
+        Button {
+            presentationMode.wrappedValue.dismiss()
+        } label: {
+            Image(systemName: "xmark")
         }
     }
 }

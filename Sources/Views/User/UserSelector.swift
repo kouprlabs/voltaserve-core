@@ -91,6 +91,12 @@ public struct UserSelector: View, ViewDataProvider, LoadStateProvider, TimerLife
                         ProgressView()
                     }
                 }
+            #elseif os(macOS)
+                ToolbarItem {
+                    if userStore.entitiesIsLoading {
+                        ProgressView()
+                    }
+                }
             #endif
         }
         .onAppear {

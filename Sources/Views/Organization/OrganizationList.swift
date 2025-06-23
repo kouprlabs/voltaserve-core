@@ -67,11 +67,11 @@ public struct OrganizationList: View, ViewDataProvider, LoadStateProvider, Timer
             .toolbar {
                 #if os(iOS)
                     ToolbarItem(placement: .topBarLeading) {
-                        Button {
-                            createIsPresented = true
-                        } label: {
-                            Image(systemName: "plus")
-                        }
+                        addButton
+                    }
+                #elseif os(macOS)
+                    ToolbarItem {
+                        addButton
                     }
                 #endif
             }
@@ -106,6 +106,14 @@ public struct OrganizationList: View, ViewDataProvider, LoadStateProvider, Timer
         .onChange(of: organizationStore.query) {
             organizationStore.clear()
             organizationStore.fetchNextPage()
+        }
+    }
+
+    private var addButton: some View {
+        Button {
+            createIsPresented = true
+        } label: {
+            Image(systemName: "plus")
         }
     }
 

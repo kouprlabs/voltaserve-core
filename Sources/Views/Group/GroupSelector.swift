@@ -73,6 +73,12 @@ public struct GroupSelector: View, ViewDataProvider, LoadStateProvider, TimerLif
                         ProgressView()
                     }
                 }
+            #elseif os(macOS)
+                ToolbarItem {
+                    if groupStore.entitiesIsLoading {
+                        ProgressView()
+                    }
+                }
             #endif
         }
         .onAppear {

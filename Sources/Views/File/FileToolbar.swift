@@ -164,9 +164,7 @@ public struct FileToolbar: ViewModifier {
                     }
                     if let current = fileStore.current, current.permission.ge(.editor) {
                         ToolbarItem(placement: .topBarLeading) {
-                            FileUploadMenu(fileStore: fileStore) {
-                                Image(systemName: "plus")
-                            }
+                            fileUploadMenu
                         }
                     }
                 #elseif os(macOS)
@@ -175,13 +173,17 @@ public struct FileToolbar: ViewModifier {
                     }
                     if let current = fileStore.current, current.permission.ge(.editor) {
                         ToolbarItem {
-                            FileUploadMenu(fileStore: fileStore) {
-                                Image(systemName: "plus")
-                            }
+                            fileUploadMenu
                         }
                     }
                 #endif
             }
+    }
+
+    private var fileUploadMenu: some View {
+        FileUploadMenu(fileStore: fileStore) {
+            Image(systemName: "plus")
+        }
     }
 
     private var viewModeToggleButton: some View {
