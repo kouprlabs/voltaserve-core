@@ -65,7 +65,7 @@ public struct FontSizeFromTextStyleModifier: ViewModifier {
 }
 
 extension View {
-    func fontSize(_ style: Font.TextStyle) -> some View {
+    public func fontSize(_ style: Font.TextStyle) -> some View {
         self.modifier(FontSizeFromTextStyleModifier(style: style))
     }
 }
