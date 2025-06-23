@@ -30,7 +30,6 @@ public struct InvitationIncomingRow: View {
                 .fontSize(.footnote)
                 .foregroundStyle(Color.gray500)
         }
-        .padding(.vertical, VOMetrics.spacingXs)
     }
 }
 

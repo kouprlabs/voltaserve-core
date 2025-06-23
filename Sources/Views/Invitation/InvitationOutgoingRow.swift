@@ -21,7 +21,7 @@ public struct InvitationOutgoingRow: View {
     }
 
     public var body: some View {
-        HStack(spacing: VOMetrics.spacing) {
+        HStack {
             VStack(alignment: .leading, spacing: VOMetrics.spacingXs) {
                 Text(invitation.email)
                     .foregroundStyle(colorScheme == .dark ? .white : .black)
@@ -54,7 +54,6 @@ public struct InvitationOutgoingRow: View {
                 #endif
             }
         }
-        .padding(.vertical, VOMetrics.spacingXs)
     }
 }
 

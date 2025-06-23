@@ -28,7 +28,6 @@ public struct SnapshotRow: View {
                 VOColorBadge(snapshot.original.size.prettyBytes(), color: .gray400, style: .outline)
             }
         }
-        .padding(.vertical, VOMetrics.spacingXs)
     }
 }
 
