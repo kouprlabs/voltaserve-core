@@ -61,6 +61,12 @@ public struct FileList: View, ListItemScrollable {
                         Viewer(tappedItem)
                     }
                 }
+            #elseif os(macOS)
+                .sheet(isPresented: $viewerIsPresented) {
+                    if let tappedItem {
+                        Viewer(tappedItem)
+                    }
+                }
             #endif
         }
     }

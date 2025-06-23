@@ -104,6 +104,12 @@ public struct FileGrid: View, ListItemScrollable {
                         .modifierIfPhone {
                             $0.padding(.vertical, VOMetrics.spacing)
                         }
+                    #elseif os(macOS)
+                        .sheet(isPresented: $viewerIsPresented) {
+                            if let tappedItem {
+                                Viewer(tappedItem)
+                            }
+                        }
                     #endif
                 }
             }

@@ -96,6 +96,21 @@ public struct SignInWithLocal: View, ErrorPresentable {
                     forgotPasswordIsPresented = false
                 }
             }
+        #elseif os(macOS)
+            .sheet(isPresented: $signUpIsPresented) {
+                SignUp {
+                    signUpIsPresented = false
+                } onSignIn: {
+                    signUpIsPresented = false
+                }
+            }
+            .sheet(isPresented: $forgotPasswordIsPresented) {
+                ForgotPassword {
+                    forgotPasswordIsPresented = false
+                } onSignIn: {
+                    forgotPasswordIsPresented = false
+                }
+            }
         #endif
         .padding()
         .voErrorSheet(isPresented: $errorIsPresented, message: errorMessage)
