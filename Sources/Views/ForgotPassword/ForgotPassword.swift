@@ -23,6 +23,26 @@ public struct ForgotPassword: View, FormValidatable, ErrorPresentable {
     }
 
     public var body: some View {
+        #if os(iOS)
+            NavigationView {
+                form
+            }
+            .toolbar {
+                ToolbarItem(placement: .cancellationAction) {
+                    Button {
+                        onSignIn?()
+                    } label: {
+                        Text("Back to Sign In")
+                    }
+                }
+            }
+        #elseif os(macOS)
+            form
+        #endif
+        .voErrorSheet(isPresented: $errorIsPresented, message: errorMessage)
+    }
+
+    private var form: some View {
         VStack(spacing: VOMetrics.spacingXl) {
             VOLogo(isGlossy: true, size: .init(width: 100, height: 100))
             VStack(spacing: VOMetrics.spacing) {
@@ -62,18 +82,6 @@ public struct ForgotPassword: View, FormValidatable, ErrorPresentable {
                 }
             }
         }
-        .toolbar {
-            #if os(iOS)
-                ToolbarItem(placement: .cancellationAction) {
-                    Button {
-                        onSignIn?()
-                    } label: {
-                        Text("Back to Sign In")
-                    }
-                }
-            #endif
-        }
-        .voErrorSheet(isPresented: $errorIsPresented, message: errorMessage)
     }
 
     private func performSendResetPasswordEmail() {

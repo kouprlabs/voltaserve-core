@@ -32,6 +32,32 @@ public struct SignInWithLocal: View, ErrorPresentable {
     }
 
     public var body: some View {
+        #if os(iOS)
+            NavigationView {
+                form
+            }
+            .fullScreenCover(isPresented: $signUpIsPresented) {
+                SignUp {
+                    signUpIsPresented = false
+                } onSignIn: {
+                    signUpIsPresented = false
+                }
+            }
+            .fullScreenCover(isPresented: $forgotPasswordIsPresented) {
+                ForgotPassword {
+                    forgotPasswordIsPresented = false
+                } onSignIn: {
+                    forgotPasswordIsPresented = false
+                }
+            }
+        #elseif os(macOS)
+            form
+        #endif
+        .padding()
+            .voErrorSheet(isPresented: $errorIsPresented, message: errorMessage)
+    }
+
+    private var form: some View {
         VStack(spacing: VOMetrics.spacingXl) {
             VOLogo(isGlossy: true, size: .init(width: 100, height: 100))
             VStack(spacing: VOMetrics.spacing) {
@@ -92,24 +118,6 @@ public struct SignInWithLocal: View, ErrorPresentable {
             }
             self.extensions()
         }
-        #if os(iOS)
-            .fullScreenCover(isPresented: $signUpIsPresented) {
-                SignUp {
-                    signUpIsPresented = false
-                } onSignIn: {
-                    signUpIsPresented = false
-                }
-            }
-            .fullScreenCover(isPresented: $forgotPasswordIsPresented) {
-                ForgotPassword {
-                    forgotPasswordIsPresented = false
-                } onSignIn: {
-                    forgotPasswordIsPresented = false
-                }
-            }
-        #endif
-        .padding()
-        .voErrorSheet(isPresented: $errorIsPresented, message: errorMessage)
     }
 
     private func performSignIn() {
