@@ -31,7 +31,7 @@ public struct SignUp: View, ViewDataProvider, LoadStateProvider, TimerLifecycle,
                 NavigationView {
                     form
                         .toolbar {
-                            ToolbarItem(placement: .topBarTrailing) {
+                            ToolbarItem(placement: .cancellationAction) {
                                 Button {
                                     onSignIn?()
                                 } label: {
