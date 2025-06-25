@@ -23,67 +23,57 @@ public struct ForgotPassword: View, FormValidatable, ErrorPresentable {
     }
 
     public var body: some View {
-        NavigationView {
-            VStack(spacing: VOMetrics.spacingXl) {
-                VOLogo(isGlossy: true, size: .init(width: 100, height: 100))
-                VStack(spacing: VOMetrics.spacing) {
-                    Text("Please provide your account Email where we can send you the password recovery instructions.")
+        VStack(spacing: VOMetrics.spacingXl) {
+            VOLogo(isGlossy: true, size: .init(width: 100, height: 100))
+            VStack(spacing: VOMetrics.spacing) {
+                Text("Please provide your account Email where we can send you the password recovery instructions.")
+                    .voFormHintText()
+                    .frame(width: VOMetrics.formWidth)
+                    .multilineTextAlignment(.center)
+                TextField("Email", text: $email)
+                    .voTextField(width: VOMetrics.formWidth)
+                    #if os(iOS)
+                        .textInputAutocapitalization(.never)
+                    #endif
+                    .autocorrectionDisabled()
+                    .disabled(isProcessing)
+                Button {
+                    if isValid() {
+                        performSendResetPasswordEmail()
+                    }
+                } label: {
+                    VOButtonLabel(
+                        "Send Recovery Instructions",
+                        isLoading: isProcessing,
+                        progressViewTint: .white
+                    )
+                }
+                .voPrimaryButton(width: VOMetrics.formWidth, isDisabled: isProcessing)
+                HStack {
+                    Text("Password recovered?")
                         .voFormHintText()
-                        .frame(width: VOMetrics.formWidth)
-                        .multilineTextAlignment(.center)
-                    TextField("Email", text: $email)
-                        .voTextField(width: VOMetrics.formWidth)
-                        #if os(iOS)
-                            .textInputAutocapitalization(.never)
-                        #endif
-                        .autocorrectionDisabled()
-                        .disabled(isProcessing)
                     Button {
-                        if isValid() {
-                            performSendResetPasswordEmail()
-                        }
+                        onSignIn?()
                     } label: {
-                        VOButtonLabel(
-                            "Send Recovery Instructions",
-                            isLoading: isProcessing,
-                            progressViewTint: .white
-                        )
+                        Text("Sign in")
+                            .voFormHintLabel()
                     }
-                    .voPrimaryButton(width: VOMetrics.formWidth, isDisabled: isProcessing)
-                    HStack {
-                        Text("Password recovered?")
-                            .voFormHintText()
-                        Button {
-                            onSignIn?()
-                        } label: {
-                            Text("Sign in")
-                                .voFormHintLabel()
-                        }
-                        .disabled(isProcessing)
-                    }
+                    .disabled(isProcessing)
                 }
             }
-            .toolbar {
-                #if os(iOS)
-                    ToolbarItem(placement: .cancellationAction) {
-                        backToSignInButton
+        }
+        .toolbar {
+            #if os(iOS)
+                ToolbarItem(placement: .cancellationAction) {
+                    Button {
+                        onSignIn?()
+                    } label: {
+                        Text("Back to Sign In")
                     }
-                #elseif os(macOS)
-                    ToolbarItem {
-                        backToSignInButton
-                    }
-                #endif
-            }
+                }
+            #endif
         }
         .voErrorSheet(isPresented: $errorIsPresented, message: errorMessage)
-    }
-
-    private var backToSignInButton: some View {
-        Button {
-            onSignIn?()
-        } label: {
-            Text("Back to Sign In")
-        }
     }
 
     private func performSendResetPasswordEmail() {

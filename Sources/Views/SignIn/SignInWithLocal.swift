@@ -12,6 +12,9 @@ import SwiftUI
 
 public struct SignInWithLocal: View, ErrorPresentable {
     @EnvironmentObject private var sessionStore: SessionStore
+    #if os(macOS)
+        @Environment(\.openWindow) private var openWindow
+    #endif
     @State private var isProcessing = false
     @State private var email: String = ""
     @State private var password: String = ""
@@ -59,7 +62,11 @@ public struct SignInWithLocal: View, ErrorPresentable {
                         Text("Don't have an account yet?")
                             .voFormHintText()
                         Button {
-                            signUpIsPresented = true
+                            #if os(iOS)
+                                signUpIsPresented = true
+                            #elseif os(macOS)
+                                openWindow(id: "sign-up")
+                            #endif
                         } label: {
                             Text("Sign up")
                                 .voFormHintLabel()
@@ -70,7 +77,11 @@ public struct SignInWithLocal: View, ErrorPresentable {
                         Text("Cannot sign in?")
                             .voFormHintText()
                         Button {
-                            forgotPasswordIsPresented = true
+                            #if os(iOS)
+                                forgotPasswordIsPresented = true
+                            #elseif os(macOS)
+                                openWindow(id: "forgot-password")
+                            #endif
                         } label: {
                             Text("Reset password")
                                 .voFormHintLabel()
@@ -90,21 +101,6 @@ public struct SignInWithLocal: View, ErrorPresentable {
                 }
             }
             .fullScreenCover(isPresented: $forgotPasswordIsPresented) {
-                ForgotPassword {
-                    forgotPasswordIsPresented = false
-                } onSignIn: {
-                    forgotPasswordIsPresented = false
-                }
-            }
-        #elseif os(macOS)
-            .sheet(isPresented: $signUpIsPresented) {
-                SignUp {
-                    signUpIsPresented = false
-                } onSignIn: {
-                    signUpIsPresented = false
-                }
-            }
-            .sheet(isPresented: $forgotPasswordIsPresented) {
                 ForgotPassword {
                     forgotPasswordIsPresented = false
                 } onSignIn: {
