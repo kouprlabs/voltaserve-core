@@ -32,29 +32,31 @@ public struct SignInWithLocal: View, ErrorPresentable {
     }
 
     public var body: some View {
-        #if os(iOS)
-            NavigationView {
+        Group {
+            #if os(iOS)
+                NavigationView {
+                    form
+                }
+                .fullScreenCover(isPresented: $signUpIsPresented) {
+                    SignUp {
+                        signUpIsPresented = false
+                    } onSignIn: {
+                        signUpIsPresented = false
+                    }
+                }
+                .fullScreenCover(isPresented: $forgotPasswordIsPresented) {
+                    ForgotPassword {
+                        forgotPasswordIsPresented = false
+                    } onSignIn: {
+                        forgotPasswordIsPresented = false
+                    }
+                }
+            #elseif os(macOS)
                 form
-            }
-            .fullScreenCover(isPresented: $signUpIsPresented) {
-                SignUp {
-                    signUpIsPresented = false
-                } onSignIn: {
-                    signUpIsPresented = false
-                }
-            }
-            .fullScreenCover(isPresented: $forgotPasswordIsPresented) {
-                ForgotPassword {
-                    forgotPasswordIsPresented = false
-                } onSignIn: {
-                    forgotPasswordIsPresented = false
-                }
-            }
-        #elseif os(macOS)
-            form
-        #endif
+            #endif
+        }
         .padding()
-            .voErrorSheet(isPresented: $errorIsPresented, message: errorMessage)
+        .voErrorSheet(isPresented: $errorIsPresented, message: errorMessage)
     }
 
     private var form: some View {
