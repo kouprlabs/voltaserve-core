@@ -26,6 +26,35 @@ public struct SignUp: View, ViewDataProvider, LoadStateProvider, TimerLifecycle,
     }
 
     public var body: some View {
+        Group {
+            #if os(iOS)
+                NavigationView {
+                    form
+                        .toolbar {
+                            ToolbarItem(placement: .topBarTrailing) {
+                                Button {
+                                    onSignIn?()
+                                } label: {
+                                    Text("Back to Sign In")
+                                }
+                            }
+                        }
+                }
+            #elseif os(macOS)
+                form
+            #endif
+        }
+        .onAppear {
+            startTimers()
+            onAppearOrChange()
+        }
+        .onDisappear {
+            stopTimers()
+        }
+        .voErrorSheet(isPresented: $errorIsPresented, message: errorMessage)
+    }
+
+    private var form: some View {
         VStack {
             if isLoading {
                 ProgressView()
@@ -106,25 +135,6 @@ public struct SignUp: View, ViewDataProvider, LoadStateProvider, TimerLifecycle,
                 }
             }
         }
-        #if os(iOS)
-            .toolbar {
-                ToolbarItem(placement: .topBarTrailing) {
-                    Button {
-                        onSignIn?()
-                    } label: {
-                        Text("Back to Sign In")
-                    }
-                }
-            }
-        #endif
-        .onAppear {
-            startTimers()
-            onAppearOrChange()
-        }
-        .onDisappear {
-            stopTimers()
-        }
-        .voErrorSheet(isPresented: $errorIsPresented, message: errorMessage)
     }
 
     private func performSignUp() {
