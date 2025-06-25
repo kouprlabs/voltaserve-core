@@ -23,25 +23,25 @@ public struct ForgotPassword: View, FormValidatable, ErrorPresentable {
     }
 
     public var body: some View {
-        #if os(iOS)
-            NavigationView {
-                form
-            }
-            .toolbar {
-                ToolbarItem(placement: .cancellationAction) {
-                    Button {
-                        onSignIn?()
-                    } label: {
-                        Text("Back to Sign In")
-                    }
+        Group {
+            #if os(iOS)
+                NavigationView {
+                    form
+                        .toolbar {
+                            ToolbarItem(placement: .cancellationAction) {
+                                Button {
+                                    onSignIn?()
+                                } label: {
+                                    Text("Back to Sign In")
+                                }
+                            }
+                        }
                 }
-            }
-            .voErrorSheet(isPresented: $errorIsPresented, message: errorMessage)
-        #elseif os(macOS)
-            form
-                .voErrorSheet(isPresented: $errorIsPresented, message: errorMessage)
-        #endif
-
+            #elseif os(macOS)
+                form
+            #endif
+        }
+        .voErrorSheet(isPresented: $errorIsPresented, message: errorMessage)
     }
 
     private var form: some View {
