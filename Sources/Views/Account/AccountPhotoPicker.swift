@@ -74,7 +74,10 @@ import UniformTypeIdentifiers
 
         public func makeNSView(context: Context) -> NSView {
             let button = NSButton(
-                title: "Choose Photo", target: context.coordinator, action: #selector(Coordinator.pickFile))
+                title: "Choose Photo",
+                target: context.coordinator,
+                action: #selector(Coordinator.pickFile)
+            )
             return button
         }
 
