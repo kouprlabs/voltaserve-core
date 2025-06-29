@@ -128,7 +128,7 @@
                         signInIsPresented = false
                     }
                 }
-                .fontSize(.body)
+                .voFontSize(.body)
                 .environmentObject(extensions)
                 .environmentObject(appearanceStore)
                 .tint(appearanceStore.accentColor)
