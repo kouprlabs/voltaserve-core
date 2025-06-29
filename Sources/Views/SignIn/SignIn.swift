@@ -12,7 +12,9 @@ import SwiftData
 import SwiftUI
 
 public struct SignIn: View {
+    @EnvironmentObject private var sessionStore: SessionStore
     @Query(filter: #Predicate<Server> { $0.isActive == true }) private var servers: [Server]
+    @State private var timer: Timer?
     private let extensions: () -> AnyView
     private let onCompletion: (() -> Void)?
 
@@ -53,7 +55,50 @@ public struct SignIn: View {
                 #endif
             }
         }
+        #if os(macOS)
+            .onAppear {
+                if let session = sessionStore.loadFromKeyChain() {
+                    if session.isExpired {
+                        sessionStore.session = nil
+                        sessionStore.deleteFromKeychain()
+                    } else {
+                        sessionStore.session = session
+                        onCompletion?()
+                    }
+                }
+            }
+            .onDisappear { stopSessionTimer() }
+            .onChange(of: sessionStore.session) { oldSession, newSession in
+                if oldSession != nil, newSession == nil {
+                    stopSessionTimer()
+                }
+            }
+        #endif
     }
+
+    #if os(macOS)
+        private func startSessionTimer() {
+            guard timer == nil else { return }
+            timer = Timer.scheduledTimer(withTimeInterval: 5, repeats: true) { _ in
+                Task.detached {
+                    guard await sessionStore.session != nil else { return }
+                    if let session = await sessionStore.session, session.isExpired {
+                        if let newSession = try await sessionStore.refreshSessionIfNecessary() {
+                            await MainActor.run {
+                                sessionStore.session = newSession
+                                sessionStore.saveInKeychain(newSession)
+                            }
+                        }
+                    }
+                }
+            }
+        }
+
+        private func stopSessionTimer() {
+            timer?.invalidate()
+            timer = nil
+        }
+    #endif
 
     private var serversNavigationLink: some View {
         NavigationLink(destination: ServerList()) {

@@ -37,7 +37,7 @@ public struct FontSizeFromTextStyleModifier: ViewModifier {
             case .caption: return .caption1
             case .caption2: return .caption2
             case .footnote: return .footnote
-            case .body: fallthrough
+            case .body: return .body
             default: return .body
             }
         }
@@ -57,7 +57,7 @@ public struct FontSizeFromTextStyleModifier: ViewModifier {
             case .caption: return .caption1
             case .caption2: return .caption2
             case .footnote: return .footnote
-            case .body: fallthrough
+            case .body: return .body
             default: return .body
             }
         }

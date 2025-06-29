@@ -100,7 +100,6 @@ public struct AccountOverview: View, ViewDataProvider, LoadStateProvider, TimerL
                         Section {
                             NavigationLink(
                                 destination: AccountSettings(accountStore: accountStore) {
-                                    dismiss()
                                     performSignOut()
                                 }
                             ) {
