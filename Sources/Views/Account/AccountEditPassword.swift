@@ -29,23 +29,23 @@ public struct AccountEditPassword: View, FormValidatable, ViewDataProvider, Load
                 .disabled(isProcessing)
             if let passwordRequirements = accountStore.passwordRequirements {
                 VStack(alignment: .listRowSeparatorLeading) {
-                    PasswordHint(
+                    VOPasswordHint(
                         "\(passwordRequirements.minLength) characters.",
                         isFulfilled: newValue.hasMinLength(passwordRequirements.minLength)
                     )
-                    PasswordHint(
+                    VOPasswordHint(
                         "\(passwordRequirements.minLowercase) lowercase character.",
                         isFulfilled: newValue.hasMinLowerCase(passwordRequirements.minLowercase)
                     )
-                    PasswordHint(
+                    VOPasswordHint(
                         "\(passwordRequirements.minUppercase) uppercase character.",
                         isFulfilled: newValue.hasMinUpperCase(passwordRequirements.minUppercase)
                     )
-                    PasswordHint(
+                    VOPasswordHint(
                         "\(passwordRequirements.minNumbers) number.",
                         isFulfilled: newValue.hasMinNumbers(passwordRequirements.minNumbers)
                     )
-                    PasswordHint(
+                    VOPasswordHint(
                         "\(passwordRequirements.minSymbols) special character(s) (!#$%).",
                         isFulfilled: newValue.hasMinSymbols(passwordRequirements.minSymbols)
                     )

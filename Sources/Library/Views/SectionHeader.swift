@@ -19,7 +19,7 @@ public struct VOSectionHeader: View {
 
     public var body: some View {
         Text(text)
-            .fontSize(.subheadline)
+            .voFontSize(.subheadline)
     }
 }
 

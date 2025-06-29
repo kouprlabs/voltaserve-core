@@ -27,7 +27,7 @@ public struct InvitationIncomingRow: View {
                     .truncationMode(.middle)
             }
             Text(invitation.createTime.relativeDate())
-                .fontSize(.footnote)
+                .voFontSize(.footnote)
                 .foregroundStyle(Color.gray500)
         }
     }

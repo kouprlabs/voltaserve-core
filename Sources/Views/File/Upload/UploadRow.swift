@@ -24,24 +24,24 @@ public struct UploadRow: View {
                 if #available(iOS 18.0, macOS 15.0, *) {
                     Image(systemName: "arrow.trianglehead.2.clockwise.rotate.90.circle")
                         .symbolEffect(.rotate, options: .repeat(.continuous))
-                        .fontSize(.title2)
+                        .voFontSize(.title2)
                         .foregroundStyle(Color.blue400)
                 }
             } else if upload.status == .waiting {
                 Image(systemName: "hourglass.circle")
-                    .fontSize(.title2)
+                    .voFontSize(.title2)
                     .foregroundStyle(Color.gray400)
             } else if upload.status == .success {
                 Image(systemName: "checkmark.circle")
-                    .fontSize(.title2)
+                    .voFontSize(.title2)
                     .foregroundStyle(Color.green400)
             } else if upload.status == .error {
                 Image(systemName: "exclamationmark.circle")
-                    .fontSize(.title2)
+                    .voFontSize(.title2)
                     .foregroundStyle(Color.red400)
             } else if upload.status == .cancelled {
                 Image(systemName: "exclamationmark.triangle")
-                    .fontSize(.title2)
+                    .voFontSize(.title2)
                     .foregroundStyle(Color.yellow400)
             }
             VStack(alignment: .leading, spacing: VOMetrics.spacingXs) {
@@ -50,7 +50,7 @@ public struct UploadRow: View {
                     .truncationMode(.middle)
                 if !upload.message.isEmpty {
                     Text(upload.message)
-                        .fontSize(.footnote)
+                        .voFontSize(.footnote)
                         .foregroundStyle(Color.gray500)
                         .lineLimit(3)
                         .truncationMode(.tail)

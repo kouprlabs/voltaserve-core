@@ -19,7 +19,7 @@ public struct InvitationStatusBadge: View {
 
     public var body: some View {
         Text(text())
-            .fontSize(.footnote)
+            .voFontSize(.footnote)
             .padding(.horizontal)
             .frame(height: 20)
             .foregroundStyle(background().textColor())

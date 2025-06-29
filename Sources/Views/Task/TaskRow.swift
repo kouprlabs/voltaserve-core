@@ -27,20 +27,20 @@ public struct TaskRow: View {
                     if #available(iOS 18.0, macOS 15.0, *) {
                         Image(systemName: "arrow.trianglehead.2.clockwise.rotate.90.circle")
                             .symbolEffect(.rotate, options: .repeat(.continuous))
-                            .fontSize(.title2)
+                            .voFontSize(.title2)
                             .foregroundStyle(Color.blue400)
                     }
                 } else if task.status == .waiting {
                     Image(systemName: "hourglass.circle")
-                        .fontSize(.title2)
+                        .voFontSize(.title2)
                         .foregroundStyle(Color.gray400)
                 } else if task.status == .success {
                     Image(systemName: "checkmark.circle")
-                        .fontSize(.title2)
+                        .voFontSize(.title2)
                         .foregroundStyle(Color.green400)
                 } else if task.status == .error {
                     Image(systemName: "exclamationmark.circle")
-                        .fontSize(.title2)
+                        .voFontSize(.title2)
                         .foregroundStyle(Color.red400)
                 }
                 if let object = task.payload?.object {
@@ -49,23 +49,23 @@ public struct TaskRow: View {
                             .lineLimit(1)
                             .truncationMode(.middle)
                         Text(task.name)
-                            .fontSize(.footnote)
+                            .voFontSize(.footnote)
                             .foregroundStyle(Color.gray500)
                             .lineLimit(3)
                             .truncationMode(.tail)
                         Text(task.createTime.relativeDate())
-                            .fontSize(.footnote)
+                            .voFontSize(.footnote)
                             .foregroundStyle(Color.gray500)
                     }
                 } else {
                     VStack(alignment: .leading, spacing: VOMetrics.spacingXs) {
                         Text(task.name)
-                            .fontSize(.footnote)
+                            .voFontSize(.footnote)
                             .foregroundStyle(Color.gray500)
                             .lineLimit(3)
                             .truncationMode(.tail)
                         Text(task.createTime.relativeDate())
-                            .fontSize(.footnote)
+                            .voFontSize(.footnote)
                             .foregroundStyle(Color.gray500)
                     }
                 }
