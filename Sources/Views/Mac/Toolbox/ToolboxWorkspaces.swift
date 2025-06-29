@@ -8,75 +8,77 @@
 // by the GNU Affero General Public License v3.0 only, included in the file
 // AGPL-3.0-only in the root of this repository.
 
-import SwiftUI
+#if os(macOS)
+    import SwiftUI
 
-struct ToolboxWorkspaces: View {
-    @Environment(\.openWindow) private var openWindow
-    @State private var searchText: String = ""
+    struct ToolboxWorkspaces: View {
+        @Environment(\.openWindow) private var openWindow
+        @State private var searchText: String = ""
 
-    var body: some View {
-        List(entities, id: \.displayID) { workspace in
-            Button {
-                openWindow(value: workspace)
-            } label: {
-                WorkspaceRow(workspace)
-            }
-            .buttonStyle(.plain)
-        }
-        .searchable(text: $searchText, prompt: "Search workspaces…")
-        .toolbar {
-            ToolbarItem {
+        var body: some View {
+            List(entities, id: \.displayID) { workspace in
                 Button {
+                    openWindow(value: workspace)
                 } label: {
-                    Label("New workspace", systemImage: "plus")
+                    WorkspaceRow(workspace)
                 }
-                .help("New workspace")
+                .buttonStyle(.plain)
+            }
+            .searchable(text: $searchText, prompt: "Search workspaces…")
+            .toolbar {
+                ToolbarItem {
+                    Button {
+                    } label: {
+                        Label("New workspace", systemImage: "plus")
+                    }
+                    .help("New workspace")
+                }
             }
         }
-    }
 
-    private let entities: [VOWorkspace.Entity] = [
-        .init(
-            id: UUID().uuidString,
-            name: "Wayne's Workspace",
-            permission: .owner,
-            storageCapacity: 100_000_000,
-            rootID: UUID().uuidString,
-            organization: .init(
+        private let entities: [VOWorkspace.Entity] = [
+            .init(
                 id: UUID().uuidString,
-                name: "Wayne's Organization",
+                name: "Wayne's Workspace",
                 permission: .owner,
+                storageCapacity: 100_000_000,
+                rootID: UUID().uuidString,
+                organization: .init(
+                    id: UUID().uuidString,
+                    name: "Wayne's Organization",
+                    permission: .owner,
+                    createTime: Date().iso8601
+                ),
                 createTime: Date().iso8601
             ),
-            createTime: Date().iso8601
-        ),
-        .init(
-            id: UUID().uuidString,
-            name: "Starks's Workspace",
-            permission: .owner,
-            storageCapacity: 100_000_000,
-            rootID: UUID().uuidString,
-            organization: .init(
+            .init(
                 id: UUID().uuidString,
-                name: "Stark's Organization",
+                name: "Starks's Workspace",
                 permission: .owner,
+                storageCapacity: 100_000_000,
+                rootID: UUID().uuidString,
+                organization: .init(
+                    id: UUID().uuidString,
+                    name: "Stark's Organization",
+                    permission: .owner,
+                    createTime: Date().iso8601
+                ),
                 createTime: Date().iso8601
             ),
-            createTime: Date().iso8601
-        ),
-        .init(
-            id: UUID().uuidString,
-            name: "Romanoff's Workspace",
-            permission: .owner,
-            storageCapacity: 100_000_000,
-            rootID: UUID().uuidString,
-            organization: .init(
+            .init(
                 id: UUID().uuidString,
-                name: "Romanoff's Organization",
+                name: "Romanoff's Workspace",
                 permission: .owner,
+                storageCapacity: 100_000_000,
+                rootID: UUID().uuidString,
+                organization: .init(
+                    id: UUID().uuidString,
+                    name: "Romanoff's Organization",
+                    permission: .owner,
+                    createTime: Date().iso8601
+                ),
                 createTime: Date().iso8601
             ),
-            createTime: Date().iso8601
-        ),
-    ]
-}
+        ]
+    }
+#endif

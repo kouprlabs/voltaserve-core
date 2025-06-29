@@ -8,12 +8,14 @@
 // by the GNU Affero General Public License v3.0 only, included in the file
 // AGPL-3.0-only in the root of this repository.
 
-import Foundation
+#if os(macOS)
+    import Foundation
 
-enum WindowID {
-    static let toolbox = "toolbox"
-    static let signIn = "sign-in"
-    static let signUp = "sign-up"
-    static let forgotPassword = "forgot-password"
-    static let accountPhotoPicker = "account-photo-picker"
-}
+    enum WindowID {
+        static let toolbox = "toolbox"
+        static let signIn = "sign-in"
+        static let signUp = "sign-up"
+        static let forgotPassword = "forgot-password"
+        static let accountPhotoPicker = "account-photo-picker"
+    }
+#endif
