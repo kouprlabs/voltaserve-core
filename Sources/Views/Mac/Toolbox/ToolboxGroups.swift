@@ -8,69 +8,71 @@
 // by the GNU Affero General Public License v3.0 only, included in the file
 // AGPL-3.0-only in the root of this repository.
 
-import SwiftUI
+#if os(macOS)
+    import SwiftUI
 
-struct ToolboxGroups: View {
-    @Environment(\.openWindow) private var openWindow
-    @State private var searchText: String = ""
+    struct ToolboxGroups: View {
+        @Environment(\.openWindow) private var openWindow
+        @State private var searchText: String = ""
 
-    var body: some View {
-        List(entities, id: \.displayID) { group in
-            Button {
-                openWindow(value: group)
-            } label: {
-                GroupRow(group)
-            }
-            .buttonStyle(.plain)
-        }
-        .searchable(text: $searchText, prompt: "Search groups…")
-        .toolbar {
-            ToolbarItem {
+        var body: some View {
+            List(entities, id: \.displayID) { group in
                 Button {
+                    openWindow(value: group)
                 } label: {
-                    Label("New group", systemImage: "plus")
+                    GroupRow(group)
                 }
-                .help("New group")
+                .buttonStyle(.plain)
+            }
+            .searchable(text: $searchText, prompt: "Search groups…")
+            .toolbar {
+                ToolbarItem {
+                    Button {
+                    } label: {
+                        Label("New group", systemImage: "plus")
+                    }
+                    .help("New group")
+                }
             }
         }
-    }
 
-    private var entities: [VOGroup.Entity] = [
-        .init(
-            id: UUID().uuidString,
-            name: "Wayne's Group",
-            organization: .init(
+        private var entities: [VOGroup.Entity] = [
+            .init(
                 id: UUID().uuidString,
-                name: "Wayne's Organization",
+                name: "Wayne's Group",
+                organization: .init(
+                    id: UUID().uuidString,
+                    name: "Wayne's Organization",
+                    permission: .owner,
+                    createTime: Date().ISO8601Format()
+                ),
                 permission: .owner,
                 createTime: Date().ISO8601Format()
             ),
-            permission: .owner,
-            createTime: Date().ISO8601Format()
-        ),
-        .init(
-            id: UUID().uuidString,
-            name: "Stark's Group",
-            organization: .init(
+            .init(
                 id: UUID().uuidString,
-                name: "Stark's Organization",
+                name: "Stark's Group",
+                organization: .init(
+                    id: UUID().uuidString,
+                    name: "Stark's Organization",
+                    permission: .owner,
+                    createTime: Date().ISO8601Format()
+                ),
                 permission: .owner,
                 createTime: Date().ISO8601Format()
             ),
-            permission: .owner,
-            createTime: Date().ISO8601Format()
-        ),
-        .init(
-            id: UUID().uuidString,
-            name: "Romanoff's Group",
-            organization: .init(
+            .init(
                 id: UUID().uuidString,
-                name: "Romanoff's Organization",
+                name: "Romanoff's Group",
+                organization: .init(
+                    id: UUID().uuidString,
+                    name: "Romanoff's Organization",
+                    permission: .owner,
+                    createTime: Date().ISO8601Format()
+                ),
                 permission: .owner,
                 createTime: Date().ISO8601Format()
             ),
-            permission: .owner,
-            createTime: Date().ISO8601Format()
-        ),
-    ]
-}
+        ]
+    }
+#endif

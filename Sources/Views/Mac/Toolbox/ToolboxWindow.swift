@@ -8,38 +8,40 @@
 // by the GNU Affero General Public License v3.0 only, included in the file
 // AGPL-3.0-only in the root of this repository.
 
-import SwiftUI
+#if os(macOS)
+    import SwiftUI
 
-struct ToolboxWindow: View {
-    @EnvironmentObject private var sessionStore: SessionStore
-    @Environment(\.openWindow) private var openWindow
-    @Environment(\.dismissWindow) private var dismissWindow
-    @State private var accountPopoverIsPresented = false
+    struct ToolboxWindow: View {
+        @EnvironmentObject private var sessionStore: SessionStore
+        @Environment(\.openWindow) private var openWindow
+        @Environment(\.dismissWindow) private var dismissWindow
+        @State private var accountPopoverIsPresented = false
 
-    var body: some View {
-        ToolboxNavigation()
-            .toolbar {
-                ToolbarItem {
-                    Button {
-                        accountPopoverIsPresented = true
-                    } label: {
-                        Label("Profile", systemImage: "person.crop.circle")
-                    }
-                    .help("Profile")
-                    .popover(
-                        isPresented: $accountPopoverIsPresented, arrowEdge: .bottom
-                    ) {
-                        ToolboxProfile()
-                            .padding()
+        var body: some View {
+            ToolboxNavigation()
+                .toolbar {
+                    ToolbarItem {
+                        Button {
+                            accountPopoverIsPresented = true
+                        } label: {
+                            Label("Profile", systemImage: "person.crop.circle")
+                        }
+                        .help("Profile")
+                        .popover(
+                            isPresented: $accountPopoverIsPresented, arrowEdge: .bottom
+                        ) {
+                            ToolboxProfile()
+                                .padding()
+                        }
                     }
                 }
-            }
-            .onAppear {
-                sessionOrSignOut(
-                    sessionStore: sessionStore,
-                    openWindow: openWindow,
-                    dismissWindow: dismissWindow
-                )
-            }
+                .onAppear {
+                    sessionOrSignOut(
+                        sessionStore: sessionStore,
+                        openWindow: openWindow,
+                        dismissWindow: dismissWindow
+                    )
+                }
+        }
     }
-}
+#endif

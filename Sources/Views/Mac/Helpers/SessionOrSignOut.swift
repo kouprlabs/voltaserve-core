@@ -8,21 +8,24 @@
 // by the GNU Affero General Public License v3.0 only, included in the file
 // AGPL-3.0-only in the root of this repository.
 
-import SwiftUI
+#if os(macOS)
+    import SwiftUI
 
-@MainActor
-func sessionOrSignOut(sessionStore: SessionStore, openWindow: OpenWindowAction, dismissWindow: DismissWindowAction) {
-    if let session = sessionStore.loadFromKeyChain() {
-        if session.isExpired {
-            sessionStore.session = nil
-            sessionStore.deleteFromKeychain()
+    @MainActor
+    func sessionOrSignOut(sessionStore: SessionStore, openWindow: OpenWindowAction, dismissWindow: DismissWindowAction)
+    {
+        if let session = sessionStore.loadFromKeyChain() {
+            if session.isExpired {
+                sessionStore.session = nil
+                sessionStore.deleteFromKeychain()
+                dismissWindow(id: WindowID.toolbox)
+                openWindow(id: WindowID.signIn)
+            } else {
+                sessionStore.session = session
+            }
+        } else {
             dismissWindow(id: WindowID.toolbox)
             openWindow(id: WindowID.signIn)
-        } else {
-            sessionStore.session = session
         }
-    } else {
-        dismissWindow(id: WindowID.toolbox)
-        openWindow(id: WindowID.signIn)
     }
-}
+#endif
