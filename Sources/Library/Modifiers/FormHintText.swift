@@ -12,7 +12,7 @@ import SwiftUI
 
 public struct VOFormHintText: ViewModifier {
     public func body(content: Content) -> some View {
-        content.fontSize(.subheadline)
+        content.voFontSize(.subheadline)
     }
 }
 

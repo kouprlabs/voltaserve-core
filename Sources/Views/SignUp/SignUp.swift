@@ -83,22 +83,22 @@ public struct SignUp: View, ViewDataProvider, LoadStateProvider, TimerLifecycle,
                                 .voTextField(width: VOMetrics.formWidth)
                                 .disabled(isProcessing)
                             VStack(alignment: .listRowSeparatorLeading) {
-                                PasswordHint(
+                                VOPasswordHint(
                                     "\(passwordRequirements.minLength) characters.",
                                     isFulfilled: password.hasMinLength(passwordRequirements.minLength))
-                                PasswordHint(
+                                VOPasswordHint(
                                     "\(passwordRequirements.minLowercase) lowercase character.",
                                     isFulfilled: password.hasMinLowerCase(passwordRequirements.minLowercase))
-                                PasswordHint(
+                                VOPasswordHint(
                                     "\(passwordRequirements.minUppercase) uppercase character.",
                                     isFulfilled: password.hasMinUpperCase(passwordRequirements.minUppercase))
-                                PasswordHint(
+                                VOPasswordHint(
                                     "\(passwordRequirements.minNumbers) number.",
                                     isFulfilled: password.hasMinNumbers(passwordRequirements.minNumbers))
-                                PasswordHint(
+                                VOPasswordHint(
                                     "\(passwordRequirements.minSymbols) special character(s) (!#$%).",
                                     isFulfilled: password.hasMinSymbols(passwordRequirements.minSymbols))
-                                PasswordHint(
+                                VOPasswordHint(
                                     "Passwords match.",
                                     isFulfilled: !password.isEmpty && !confirmPassword.isEmpty
                                         && password == confirmPassword)

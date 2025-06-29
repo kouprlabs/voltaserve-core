@@ -10,7 +10,7 @@
 
 import SwiftUI
 
-public struct FontSizeFromTextStyleModifier: ViewModifier {
+public struct VOFontSizeFromTextStyleModifier: ViewModifier {
     let style: Font.TextStyle
 
     public func body(content: Content) -> some View {
@@ -65,21 +65,21 @@ public struct FontSizeFromTextStyleModifier: ViewModifier {
 }
 
 extension View {
-    public func fontSize(_ style: Font.TextStyle) -> some View {
-        self.modifier(FontSizeFromTextStyleModifier(style: style))
+    public func voFontSize(_ style: Font.TextStyle) -> some View {
+        self.modifier(VOFontSizeFromTextStyleModifier(style: style))
     }
 }
 
 #Preview {
     VStack {
         Text("Lorem ipsum dolor imet.")
-            .fontSize(.title)
+            .voFontSize(.title)
         Text("Lorem ipsum dolor imet.")
-            .fontSize(.title2)
+            .voFontSize(.title2)
         Text("Lorem ipsum dolor imet.")
-            .fontSize(.body)
+            .voFontSize(.body)
         Text("Lorem ipsum dolor imet.")
-            .fontSize(.footnote)
+            .voFontSize(.footnote)
     }
     .padding()
 }

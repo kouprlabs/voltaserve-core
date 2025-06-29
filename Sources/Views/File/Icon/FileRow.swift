@@ -36,7 +36,7 @@ public struct FileRow: View {
                     .lineLimit(1)
                     .truncationMode(.middle)
                 Text(file.createTime.relativeDate())
-                    .fontSize(.footnote)
+                    .voFontSize(.footnote)
                     .foregroundStyle(Color.gray500)
             }
             Spacer()

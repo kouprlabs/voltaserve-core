@@ -27,7 +27,7 @@ public struct SharingGroupRow: View {
                     .truncationMode(.tail)
                     .foregroundStyle(colorScheme == .dark ? .white : .black)
                 Text(groupPermission.group.organization.name)
-                    .fontSize(.footnote)
+                    .voFontSize(.footnote)
                     .foregroundStyle(Color.gray500)
                     .lineLimit(1)
                     .truncationMode(.tail)

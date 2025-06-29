@@ -44,7 +44,7 @@ public struct MosaicSettings: View, ViewDataProvider, LoadStateProvider, TimerLi
                     }
                     .overlay {
                         RoundedRectangle(cornerRadius: VOMetrics.borderRadius)
-                            .strokeBorder(Color.borderColor(colorScheme: colorScheme), lineWidth: 1)
+                            .strokeBorder(Color.voBorderColor(colorScheme: colorScheme), lineWidth: 1)
                     }
                     .padding(.horizontal)
                     #if os(iOS)

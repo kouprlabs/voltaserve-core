@@ -33,7 +33,7 @@ public struct SharingUserRow: View {
                     .lineLimit(1)
                     .truncationMode(.tail)
                 Text(userPermission.user.email)
-                    .fontSize(.footnote)
+                    .voFontSize(.footnote)
                     .foregroundStyle(Color.gray500)
                     .lineLimit(1)
                     .truncationMode(.middle)

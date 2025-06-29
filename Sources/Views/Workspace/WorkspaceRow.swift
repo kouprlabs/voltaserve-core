@@ -27,7 +27,7 @@ public struct WorkspaceRow: View {
                     .truncationMode(.tail)
                     .foregroundStyle(colorScheme == .dark ? .white : .black)
                 Text(workspace.organization.name)
-                    .fontSize(.footnote)
+                    .voFontSize(.footnote)
                     .foregroundStyle(Color.gray500)
                     .lineLimit(1)
                     .truncationMode(.tail)

@@ -27,7 +27,7 @@ public struct GroupRow: View {
                     .truncationMode(.middle)
                     .foregroundStyle(colorScheme == .dark ? .white : .black)
                 Text(group.organization.name)
-                    .fontSize(.footnote)
+                    .voFontSize(.footnote)
                     .foregroundStyle(Color.gray500)
                     .lineLimit(1)
                     .truncationMode(.tail)

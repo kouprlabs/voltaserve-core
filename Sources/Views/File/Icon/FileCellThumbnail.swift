@@ -45,14 +45,14 @@ public struct FileCellThumbnail<V: View>: View {
             }
             .overlay {
                 RoundedRectangle(cornerRadius: VOMetrics.borderRadiusSm)
-                    .strokeBorder(Color.borderColor(colorScheme: colorScheme), lineWidth: 1)
+                    .strokeBorder(Color.voBorderColor(colorScheme: colorScheme), lineWidth: 1)
             }
             .fileCellAdornments(file)
             .overlay {
                 if let fileExtension = file.snapshot?.original.fileExtension, fileExtension.isVideo() {
                     Image(systemName: "play.fill")
                         .foregroundStyle(.white)
-                        .fontSize(.largeTitle)
+                        .voFontSize(.largeTitle)
                         .opacity(0.5)
                 }
             }

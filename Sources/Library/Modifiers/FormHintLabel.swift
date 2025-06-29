@@ -15,7 +15,7 @@ public struct VOFormHintLabel: ViewModifier {
 
     public func body(content: Content) -> some View {
         content
-            .fontSize(.subheadline)
+            .voFontSize(.subheadline)
             .foregroundStyle(colorScheme == .dark ? .white : .black)
             .underline()
     }

@@ -21,7 +21,7 @@ public struct VONumberBadge: View {
     public var body: some View {
         Text("\(value)")
             .padding(value > 9 ? VOMetrics.spacingSm : 0)
-            .fontSize(.footnote)
+            .voFontSize(.footnote)
             .fontWeight(.semibold)
             .frame(height: 24)
             .frame(minWidth: 24)

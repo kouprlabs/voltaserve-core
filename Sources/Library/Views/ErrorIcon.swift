@@ -15,7 +15,7 @@ public struct VOErrorIcon: View {
 
     public var body: some View {
         Image(systemName: "xmark.circle")
-            .fontSize(.title)
+            .voFontSize(.title)
             .foregroundStyle(Color.red500)
     }
 }

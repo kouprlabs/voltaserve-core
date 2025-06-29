@@ -34,7 +34,7 @@ public struct UserRow: View {
                     .truncationMode(.tail)
                     .foregroundStyle(colorScheme == .dark ? .white : .black)
                 Text(user.email)
-                    .fontSize(.footnote)
+                    .voFontSize(.footnote)
                     .foregroundStyle(Color.gray500)
                     .lineLimit(1)
                     .truncationMode(.middle)
